@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpb.blogsoon.webapp;
+package br.edu.ifpb.blogsoon.webapp.controller.usuario;
 
 import br.edu.ifpb.blogsoon.core.entidades.Usuario;
 import br.edu.ifpb.blogsoon.manager.UsuarioRepository;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Emanuel Batista da Silva Filho - emanuelbatista2011@gmail.com
  */
 @Controller
+@RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
@@ -30,7 +31,7 @@ public class UsuarioController {
         return new Usuario();
     }
 
-    @RequestMapping({"/login","/"})
+    @RequestMapping({"/login"})
     public String login() {
         return "index";
     }

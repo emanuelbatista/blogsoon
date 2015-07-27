@@ -9,8 +9,8 @@
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div id="formContent">
     <div class="modal-content">
-        <form:form method="post" id="form" action="cadastro" modelAttribute="usuario" cssClass="row">
-            <!--<form action="" class="row">-->
+        <form:form method="post" id="form" action="usuario/cadastro" modelAttribute="usuario" cssClass="row">
+            <!--<form action="" class="row">-->            
             <form:errors path="*"/>
             <div class="input-field col s12">
                 <form:input id="cadastro_nome" path="nome"/>
@@ -48,6 +48,10 @@
             return false;
         });
     });
+    var errors = document.getElementById('usuario.errors').innerHTML.split('<br>');
+    for (i = 0; i < errors.length; i++){
+        Materialize.toast(errors[i], 4000)
+    }
 </script>
 
 

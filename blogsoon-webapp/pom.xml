@@ -10,7 +10,7 @@
     <groupId>br.edu.ifpb</groupId>
     <artifactId>blogsoon-webapp</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>blogsoon-webapp</name>
 
@@ -24,6 +24,11 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>blogsoon-manager</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4-1201-jdbc41</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

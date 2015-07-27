@@ -1,2 +1,3 @@
-/home/emanuel/NetBeansProjects/blog-soon/blogsoon-webapp/src/main/java/br/edu/ifpb/blogsoon/webapp/UsuarioController.java
-/home/emanuel/NetBeansProjects/blog-soon/blogsoon-webapp/src/main/java/br/edu/ifpb/blogsoon/Main.java
+/home/douglas/Documentos/Repositorios/blogsoon/blogsoon-webapp/src/main/java/br/edu/ifpb/blogsoon/webapp/controller/MainController.java
+/home/douglas/Documentos/Repositorios/blogsoon/blogsoon-webapp/src/main/java/br/edu/ifpb/blogsoon/Main.java
+/home/douglas/Documentos/Repositorios/blogsoon/blogsoon-webapp/src/main/java/br/edu/ifpb/blogsoon/webapp/controller/usuario/UsuarioController.java

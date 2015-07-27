@@ -1,2 +1,3 @@
-br/edu/ifpb/blogsoon/webapp/UsuarioController.class
 br/edu/ifpb/blogsoon/Main.class
+br/edu/ifpb/blogsoon/webapp/controller/usuario/UsuarioController.class
+br/edu/ifpb/blogsoon/webapp/controller/MainController.class
