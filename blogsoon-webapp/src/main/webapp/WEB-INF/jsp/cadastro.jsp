@@ -9,7 +9,7 @@
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div id="formContent">
     <div class="modal-content">
-        <form:form method="post" id="form" action="usuario/cadastro" modelAttribute="usuario" cssClass="row">
+        <form:form method="post" id="form" action="/usuario/cadastro" modelAttribute="usuario" cssClass="row">
             <!--<form action="" class="row">-->            
             <form:errors path="*"/>
             <div class="input-field col s12">
@@ -29,7 +29,7 @@
             </div>
             <div class="input-field col s12">
                 <!--<input id="cadastro_senha" type="text" class="validate" />-->
-                <form:input path="senha" id="cadastro_senha" class="validate"/>
+                <form:input path="senha" id="cadastro_senha" class="validate" type="password"/>
                 <label for="cadastro_senha" name="senha" required="true">Senha</label>
             </div>
             <div class="input-field col s12">

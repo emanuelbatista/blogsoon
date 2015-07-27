@@ -1,30 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifpb.blogsoon.webapp.controller.usuario;
 
 import br.edu.ifpb.blogsoon.core.entidades.Usuario;
-import br.edu.ifpb.blogsoon.manager.UsuarioRepository;
+import br.edu.ifpb.blogsoon.manager.exceptions.LoginException;
+import br.edu.ifpb.blogsoon.manager.servicos.usuario.UsuarioService;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author Emanuel Batista da Silva Filho - emanuelbatista2011@gmail.com
+ * @author douglasgabriel
  */
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
-    private UsuarioRepository UsuarioDAO;
-
+    private UsuarioService servico;
 
     @ModelAttribute("usuario")
     public Usuario criarUsuario() {
@@ -32,17 +30,31 @@ public class UsuarioController {
     }
 
     @RequestMapping({"/login"})
-    public String login() {
-        return "index";
+    public String login(HttpServletRequest request) {
+        String login = request.getParameter("login");
+        String senha = request.getParameter("senha");
+        try{
+            Usuario usuario = servico.login(login, senha);
+            request.getSession().setAttribute("usuario", usuario);
+            return "index";
+        }catch (LoginException e){
+            request.setAttribute("loginErro", e.getMessage());
+            return "index";
+        }
     }
-    
+
     @RequestMapping("/cadastro")
     public String cadastro(@Valid Usuario usuario, BindingResult result) {
         if (result.hasErrors()) {
             return "cadastro";
         }
-        UsuarioDAO.save(usuario);
-        return "redirect:/login";
+        try {
+            servico.salvar(usuario);
+        } catch (Exception e) {
+            result.addError(new ObjectError("signup", e.getMessage()));
+            return "cadastro";
+        }
+        return "/login";
     }
 
 }

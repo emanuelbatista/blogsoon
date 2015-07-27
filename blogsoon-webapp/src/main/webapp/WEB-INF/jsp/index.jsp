@@ -9,12 +9,12 @@
         <title>BlogSoon</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" media="all"
-              href="css/materialize.min.css"  />
+              href="/css/materialize.min.css"  />
         <link rel="stylesheet" type="text/css" media="all"
-              href="css/index.css"  />
+              href="/css/index.css"  />
         <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,700' rel='stylesheet' type='text/css' />    
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="js/materialize.min.js" ></script>
+        <script type="text/javascript" src="/js/materialize.min.js" ></script>
     </head>
 
     <body>
@@ -37,7 +37,10 @@
             </nav>
         </div>
         <div id="cadastro" class="modal">
-            <jsp:include page="cadastro.jsp"/>
+            <jsp:include page="/WEB-INF/jsp/cadastro.jsp"/>
+        </div>
+        <div id="login" class="modal">
+            <jsp:include page="/WEB-INF/jsp/login.jsp"/>
         </div>
 
         <div id="login" class="modal">
