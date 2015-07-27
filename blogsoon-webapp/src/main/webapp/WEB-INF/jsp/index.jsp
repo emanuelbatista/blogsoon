@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
+
 
 
 <html>
@@ -13,7 +12,8 @@
               href="css/materialize.min.css"  />
         <link rel="stylesheet" type="text/css" media="all"
               href="css/index.css"  />
-        <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,700' rel='stylesheet' type='text/css' />        
+        <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,700' rel='stylesheet' type='text/css' />    
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     </head>
 
     <body>
@@ -36,37 +36,7 @@
             </nav>
         </div>
         <div id="cadastro" class="modal">
-            <form:form method="post" action="cadastro" modelAttribute="usuario" cssClass="row">
-                <div class="modal-content">
-                    <!--<form action="" class="row">-->
-                    <form:errors path="*"/>
-                    <div class="input-field col s12">
-                        <form:input id="cadastro_nome" path="nome"/>
-                        <!--<input id="cadastro_nome" type="text" class="validate" required="true"/>-->
-                        <label for="cadastro_nome" name="nome">Nome</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <!--<input id="cadastro_sobrenome" type="text" class="validate" />-->
-                        <form:input path="sobrenome" id="cadastro_sobrenome" cssClass="validate"/>
-                        <label for="cadastro_sobrenome" name="sobrenome" required="true">Sobrenome</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <!--<input id="cadastro_login" type="text" class="validate" />-->
-                        <form:input path="login" id="cadastro_login" cssClass="validate"/>
-                        <label for="cadastro_login" name="login" required="true">Login</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <!--<input id="cadastro_senha" type="text" class="validate" />-->
-                        <form:input path="senha" id="cadastro_senha" class="validate"/>
-                        <label for="cadastro_senha" name="senha" required="true">Senha</label>
-                    </div>
-                    <!--</form>-->
-                </div>
-                <div class="modal-footer">
-                    <!--<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Cadastrar</a>-->
-                    <input type="submit" value="Cadastrar" class="waves-effect waves-green btn-flat modal-action modal-close"> 
-                </div>
-            </form:form>
+            <jsp:include page="cadastro.jsp"/>
         </div>
         <div id="login" class="modal">
             <div class="modal-content">
@@ -185,13 +155,15 @@
         <div>Aliquam voluptates, totam qui molestiae numquam est ullam aperiam dicta dolor eos culpa quos, at laborum dolorem aliquid, amet perferendis doloribus, natus perspiciatis? Nihil laborum hic labore, voluptatum, porro nesciunt!</div>
         <div>Eum soluta neque tenetur est ratione facere assumenda optio praesentium sint nesciunt atque deleniti maiores mollitia, harum cumque ex corporis quam magnam fugit. Earum voluptatibus nobis, minima necessitatibus quis magnam!</div>
         <div>Ad a facilis aperiam iste, necessitatibus maxime, saepe odit blanditiis laborum, quae odio! Cupiditate facilis accusamus quidem qui sed ea aut enim ullam nam perspiciatis veritatis, fugiat voluptates voluptate non.</div>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        
         <script type="text/javascript" src="js/materialize.min.js" ></script>
         <script>
             $(".button-collapse").sideNav();
             $(document).ready(function () {
                 $('.modal-trigger').leanModal();
             });
+
+       
         </script>
     </body>
 </html>

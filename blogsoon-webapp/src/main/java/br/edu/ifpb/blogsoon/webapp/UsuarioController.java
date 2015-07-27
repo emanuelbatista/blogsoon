@@ -38,8 +38,9 @@ public class UsuarioController {
     @RequestMapping("/cadastro")
     public String cadastro(@Valid Usuario usuario, BindingResult result) {
         if (result.hasErrors()) {
-            return "index";
+            return "cadastro";
         }
+        UsuarioDAO.save(usuario);
         return "redirect:/login";
     }
 
