@@ -13,6 +13,6 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author Emanuel Batista da Silva Filho - emanuelbatista2011@gmail.com
  */
-public interface UsuarioRepository extends CrudRepository<Usuario, Long>{
+public interface UsuarioRepository extends CrudRepository<Usuario, String>{
     List<Usuario> findBynome(String nome);
 }
