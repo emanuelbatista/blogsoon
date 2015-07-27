@@ -36,8 +36,10 @@
             </nav>
         </div>
         <div id="cadastro" class="modal">
+
             <jsp:include page="cadastro.jsp"/>
         </div>
+
         <div id="login" class="modal">
             <div class="modal-content">
                 <form action="" class="row">
@@ -155,7 +157,7 @@
         <div>Aliquam voluptates, totam qui molestiae numquam est ullam aperiam dicta dolor eos culpa quos, at laborum dolorem aliquid, amet perferendis doloribus, natus perspiciatis? Nihil laborum hic labore, voluptatum, porro nesciunt!</div>
         <div>Eum soluta neque tenetur est ratione facere assumenda optio praesentium sint nesciunt atque deleniti maiores mollitia, harum cumque ex corporis quam magnam fugit. Earum voluptatibus nobis, minima necessitatibus quis magnam!</div>
         <div>Ad a facilis aperiam iste, necessitatibus maxime, saepe odit blanditiis laborum, quae odio! Cupiditate facilis accusamus quidem qui sed ea aut enim ullam nam perspiciatis veritatis, fugiat voluptates voluptate non.</div>
-        
+
         <script type="text/javascript" src="js/materialize.min.js" ></script>
         <script>
             $(".button-collapse").sideNav();
@@ -163,7 +165,8 @@
                 $('.modal-trigger').leanModal();
             });
 
-       
+
         </script>
+
     </body>
 </html>

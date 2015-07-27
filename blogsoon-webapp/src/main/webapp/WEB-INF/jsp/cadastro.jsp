@@ -7,9 +7,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
-<div id="formsContent">
-    <form:form method="post" id="form" action="cadastro" modelAttribute="usuario" cssClass="row">
-        <div class="modal-content">
+<div id="formContent">
+    <div class="modal-content">
+        <form:form method="post" id="form" action="cadastro" modelAttribute="usuario" cssClass="row">
             <!--<form action="" class="row">-->
             <form:errors path="*"/>
             <div class="input-field col s12">
@@ -32,22 +32,22 @@
                 <form:input path="senha" id="cadastro_senha" class="validate"/>
                 <label for="cadastro_senha" name="senha" required="true">Senha</label>
             </div>
-            <!--</form>-->
-        </div>
-        <div class="modal-footer">
-            <!--<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Cadastrar</a>-->
-            <input type="submit" value="Cadastrar" class="waves-effect waves-green btn-flat modal-action modal-close"> 
-        </div>
-    </form:form>
-    <script>
-        $(document).ready(function () {
-            $("#form").submit(function () {
-                $.post($(this).attr("action"), $(this).serialize(), function (html) {
-                    $("#formsContent").replaceWith(html);
-                });
-                return false;
-            });
-        });
-    </script>
-
+            <div class="input-field col s12">
+                <!--<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Cadastrar</a>-->
+                <input type="submit" value="Cadastrar" class="waves-effect waves-green btn-flat modal-action modal-close"> 
+            </div>
+        </form:form>
+    </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("#form").submit(function () {
+            $.post($(this).attr("action"), $(this).serialize(), function (html) {
+                $("#formContent").replaceWith(html);
+            });
+            return false;
+        });
+    });
+</script>
+
+
