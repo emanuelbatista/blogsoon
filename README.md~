@@ -23,11 +23,6 @@ extraído a partir do download do JDK.
 
  `mvn clean spring-boot:run`
 
-##Acessar na máquina local
-  
-  `localhost:8080`
-
-
 [Git]: https://github.com/
 [JDK8]: http://www.oracle.com/technetwork/java/javase/downloads
 [Maven]: https://maven.apache.org/download.cgi
