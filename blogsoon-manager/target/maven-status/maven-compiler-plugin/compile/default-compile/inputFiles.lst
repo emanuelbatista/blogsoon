@@ -1,1 +1,3 @@
-/home/douglas/Documentos/Repositorios/blogsoon/blogsoon-manager/src/main/java/br/edu/ifpb/blogsoon/manager/UsuarioRepository.java
+/home/douglas/Documentos/Repositorios/blogsoon/blogsoon-manager/src/main/java/br/edu/ifpb/blogsoon/manager/repositorios/usuario/UsuarioRepository.java
+/home/douglas/Documentos/Repositorios/blogsoon/blogsoon-manager/src/main/java/br/edu/ifpb/blogsoon/manager/servicos/usuario/UsuarioServiceImpl.java
+/home/douglas/Documentos/Repositorios/blogsoon/blogsoon-manager/src/main/java/br/edu/ifpb/blogsoon/manager/servicos/usuario/UsuarioService.java

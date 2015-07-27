@@ -18,14 +18,12 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 public class Usuario implements Serializable {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+        
     @NotEmpty(message = "O nome está vazio")
     private String nome;
     private String sobrenome;
-    @NotEmpty(message = "O login está vazio")
+    @Id
+    @NotEmpty(message = "O login está vazio")    
     private String login;
     @NotEmpty(message = "A senha está vazia")
     private String senha; 
@@ -41,26 +39,12 @@ public class Usuario implements Serializable {
     }
 
     public Usuario(long id, String nome, String sobrenome, String login, String senha) {
-        this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.login = login;
         this.senha = senha;
     }
     
-    
- 
-    
-    
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -95,7 +79,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", login=" + login + ", senha=" + senha + '}';
+        return "Usuario{" + ", nome=" + nome + ", sobrenome=" + sobrenome + ", login=" + login + ", senha=" + senha + '}';
     }
     
     

@@ -29,7 +29,7 @@
             </div>
             <div class="input-field col s12">
                 <!--<input id="cadastro_senha" type="text" class="validate" />-->
-                <form:input path="senha" id="cadastro_senha" class="validate"/>
+                <form:input path="senha" id="cadastro_senha" class="validate" type="password"/>
                 <label for="cadastro_senha" name="senha" required="true">Senha</label>
             </div>
             <div class="input-field col s12">

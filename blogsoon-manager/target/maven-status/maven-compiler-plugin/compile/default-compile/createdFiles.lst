@@ -1,1 +1,3 @@
-br/edu/ifpb/blogsoon/manager/UsuarioRepository.class
+br/edu/ifpb/blogsoon/manager/servicos/usuario/UsuarioService.class
+br/edu/ifpb/blogsoon/manager/servicos/usuario/UsuarioServiceImpl.class
+br/edu/ifpb/blogsoon/manager/repositorios/usuario/UsuarioRepository.class

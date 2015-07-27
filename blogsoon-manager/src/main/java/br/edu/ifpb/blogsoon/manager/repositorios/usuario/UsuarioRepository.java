@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpb.blogsoon.manager;
+package br.edu.ifpb.blogsoon.manager.repositorios.usuario;
 
 import br.edu.ifpb.blogsoon.core.entidades.Usuario;
 import java.util.List;
