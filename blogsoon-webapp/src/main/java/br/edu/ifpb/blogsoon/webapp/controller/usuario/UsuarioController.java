@@ -46,15 +46,15 @@ public class UsuarioController {
     @RequestMapping("/cadastro")
     public String cadastro(@Valid Usuario usuario, BindingResult result) {
         if (result.hasErrors()) {
-            return "cadastro";
+            return "index";
         }
         try {
             servico.salvar(usuario);
         } catch (Exception e) {
             result.addError(new ObjectError("signup", e.getMessage()));
-            return "cadastro";
+            return "index";
         }
-        return "/login";
+        return "redirect:/";
     }
 
 }

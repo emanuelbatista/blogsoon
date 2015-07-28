@@ -27,13 +27,13 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () {
-        $("#form").submit(function () {
-            $.post($(this).attr("action"), $(this).serialize(), function (html) {
-                $("#formContent").replaceWith(html);
-            });
-            return false;
-        });
-    });    
+//    $(document).ready(function () {
+//        $("#form").submit(function () {
+//            $.post($(this).attr("action"), $(this).serialize(), function (html) {
+//                $("#formContent").replaceWith(html);
+//            });
+//            return false;
+//        });
+//    });    
     Materialize.toast('${loginErro}', 4000);
 </script>
