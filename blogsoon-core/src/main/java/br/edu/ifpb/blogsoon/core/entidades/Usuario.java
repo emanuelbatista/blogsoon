@@ -6,10 +6,10 @@
 package br.edu.ifpb.blogsoon.core.entidades;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -26,7 +26,9 @@ public class Usuario implements Serializable {
     @NotEmpty(message = "O login está vazio")    
     private String login;
     @NotEmpty(message = "A senha está vazia")
-    private String senha; 
+    private String senha;
+    @Column(nullable = true)
+    private String foto;
 
     public Usuario() {
     }
@@ -43,6 +45,14 @@ public class Usuario implements Serializable {
         this.sobrenome = sobrenome;
         this.login = login;
         this.senha = senha;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
     
     public String getNome() {
