@@ -25,7 +25,15 @@ extraído a partir do download do JDK.
 
 ##Acessar na máquina local
   
-  `localhost:8080`
+  `localhost:9000`
+
+##Empacotar
+  
+  `mvn clean package`
+
+##Executar a aplicação pelo .war
+  
+  `java -jar target/${nome da aplicação}.war`
 
 
 [Git]: https://github.com/

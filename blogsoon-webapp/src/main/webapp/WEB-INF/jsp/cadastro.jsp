@@ -41,14 +41,14 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () {
-        $("#form").submit(function () {
-            $.post($(this).attr("action"), $(this).serialize(), function (html) {
-                $("#formContent").replaceWith(html);
-            });
-            return false;
-        });
-    });
+//    $(document).ready(function () {
+//        $("#form").submit(function () {
+//            $.post($(this).attr("action"), $(this).serialize(), function (html) {
+//                $("#formContent").replaceWith(html);
+//            });
+//            return false;
+//        });
+//    });
     var errors = document.getElementById('usuario.errors').innerHTML.split('<br>');
     for (i = 0; i < errors.length; i++){
         Materialize.toast(errors[i], 4000)

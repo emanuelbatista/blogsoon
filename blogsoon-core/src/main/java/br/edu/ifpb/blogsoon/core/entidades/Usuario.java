@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 public class Usuario implements Serializable {
-        
+     
     @NotEmpty(message = "O nome está vazio")
     private String nome;
     private String sobrenome;
