@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div id="formContent">
@@ -26,14 +27,8 @@
         </form>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $("#form").submit(function () {
-            $.post($(this).attr("action"), $(this).serialize(), function (html) {
-                $("#formContent").replaceWith(html);
-            });
-            return false;
-        });
-    });    
-    Materialize.toast('${loginErro}', 4000);
-</script>
+<c:if test="${loginErro != null}">
+    <script>
+        Materialize.toast('${loginErro}', 4000);
+    </script>
+</c:if>

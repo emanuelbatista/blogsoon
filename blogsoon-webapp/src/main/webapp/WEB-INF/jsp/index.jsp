@@ -42,24 +42,7 @@
         <div id="login" class="modal">
             <jsp:include page="/WEB-INF/jsp/login.jsp"/>
         </div>
-
-        <div id="login" class="modal">
-            <div class="modal-content">
-                <form action="" class="row">
-                    <div class="input-field col s12">
-                        <input id="login_login" type="text" class="validate" />
-                        <label for="login_login" name="login" required="true">Login</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <input id="login_senha" type="text" class="validate" />
-                        <label for="login_senha" name="senha" required="true">Senha</label>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Logar</a>
-            </div>
-        </div>
+                
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat quasi quod, ducimus quam numquam eaque doloribus animi quas, praesentium suscipit nostrum alias atque obcaecati similique ratione mollitia omnis dolore blanditiis!</div>
         <div>Repellendus reprehenderit totam laudantium autem soluta! Ex, ipsa nulla cum vitae, aperiam laudantium! Consequuntur ex adipisci, porro voluptas magnam neque beatae exercitationem optio illum, autem! Sint aperiam, alias dignissimos corrupti.</div>
         <div>Reiciendis aut eveniet quae temporibus voluptatem sequi dolorem exercitationem delectus. Commodi enim iste at et maiores, minus nobis, nostrum, illum facilis minima praesentium soluta rem aliquid esse quasi mollitia repellendus.</div>

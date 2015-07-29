@@ -26,11 +26,12 @@ public class UsuarioServiceImpl implements UsuarioService {
     public void salvar(Usuario usuario) throws PersistenceException {
         if (repositorio.findOne(usuario.getLogin()) != null) {
             throw new PersistenceException("O login informado já foi cadastrado");
-        }
-        repositorio.save(usuario);
-        File file = new File("/imagens/" + usuario.getLogin());
-        if (!file.exists()) {
-            file.mkdir();
+        } else {
+            repositorio.save(usuario);
+            File file = new File("imagens/" + usuario.getLogin());
+            if (!file.exists()) {
+                file.mkdir();
+            }
         }
     }
 
@@ -47,15 +48,20 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new LoginException("Login inválido");
         }
     }
-    
+
     @Override
-    public void salvarImagemPerfil (Usuario usuario, byte[] imagem) throws FileNotFoundException, IOException{
-        String caminhoArquivo = "/images/"+usuario.getLogin()+"perfil.jpg";
-        File arquivoParaSalvar = new File (caminhoArquivo);
+    public void salvarImagemPerfil(Usuario usuario, byte[] imagem) throws FileNotFoundException, IOException {
+        System.out.println("Método do serviço que salva imagem");
+        String caminhoArquivo = "imagens/" + usuario.getLogin() + "/perfil.jpg";
+        File arquivoParaSalvar = new File(caminhoArquivo);
+        if (!arquivoParaSalvar.exists())
+            arquivoParaSalvar.createNewFile();
         FileOutputStream fos = new FileOutputStream(arquivoParaSalvar);
         fos.write(imagem);
+        System.out.println("Arquivo escrito");
         usuario.setFoto(caminhoArquivo);
         repositorio.save(usuario);
+        System.out.println("Arquivo atribuido ao usuario");
     }
 
 }

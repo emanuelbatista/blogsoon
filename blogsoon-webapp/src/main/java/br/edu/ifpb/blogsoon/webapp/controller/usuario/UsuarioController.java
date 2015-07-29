@@ -41,7 +41,7 @@ public class UsuarioController {
         try {
             Usuario usuario = servico.login(login, senha);
             request.getSession().setAttribute("usuario", usuario);
-            return "redirect:home";
+            return "home";
         } catch (LoginException e) {
             request.setAttribute("loginErro", e.getMessage());
             return "index";
@@ -64,21 +64,26 @@ public class UsuarioController {
 
     @RequestMapping("/salvar/imagem")
     public String uploadImagemPerfil(@RequestParam("file") MultipartFile arquivo,
-            @ModelAttribute("usuario") Usuario usuario, HttpServletRequest request) {
+            HttpServletRequest request) {
+        System.out.println("Entrando no método para salvar imagem do controlador");
         List<String> erros = new ArrayList<>();
         if (!arquivo.isEmpty()) {
+            System.out.println("o arquivo não está vazio");
             try {
+                Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
                 servico.salvarImagemPerfil(usuario, arquivo.getBytes());
                 return "redirect:home";
             } catch (IOException ex) {
+                System.out.println("erro ao salvar arquivo");
+                ex.printStackTrace();
                 erros.add("Erro ao salvar imagem");
                 request.setAttribute("erros", erros);
-                return "home";
+                return "/home";
             }
         }
         erros.add("O arquivo informado está vazio");
         request.setAttribute("erros", erros);
-        return "home";
+        return "/home";
     }
 
 }
