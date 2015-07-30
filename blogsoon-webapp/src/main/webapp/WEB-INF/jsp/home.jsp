@@ -29,7 +29,7 @@
                     <li>
                         <a href="#!" onclick="$('.button-collapse').sideNav('show');">
                             <c:if test="${sessionScope.usuario.foto != null}">
-                                <img src="/${sessionScope.usuario.foto}" alt="${sessionScope.usuario.nome}" title="{sessionScope.usuario.nome}" /> 
+                                <img src="/usuario/imagem/perfil" alt="${sessionScope.usuario.nome}" title="{sessionScope.usuario.nome}" /> 
                             </c:if>
                             <c:if test="${sessionScope.usuario.foto == null}">
                                 <img src="/imagens/perfilDefault.jpg" alt="${sessionScope.usuario.nome}" title="${sessionScope.usuario.nome}" /> 
@@ -42,7 +42,7 @@
                     <li>
                         <a href="#uploadImagem" class="modal-trigger">
                             <c:if test="${sessionScope.usuario.foto != null}">
-                                <img src="/${sessionScope.usuario.foto}" alt="${sessionScope.usuario.nome}" title="{sessionScope.usuario.nome}" /> 
+                                <img src="/usuario/imagem/perfil" alt="${sessionScope.usuario.nome}" title="{sessionScope.usuario.nome}" /> 
                             </c:if>
                             <c:if test="${sessionScope.usuario.foto == null}">
                                 <img src="/imagens/perfilDefault.jpg" alt="${sessionScope.usuario.nome}" title="${sessionScope.usuario.nome}" /> 

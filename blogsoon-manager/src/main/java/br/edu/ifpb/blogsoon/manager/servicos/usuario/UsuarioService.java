@@ -16,5 +16,5 @@ public interface UsuarioService {
 
     void salvar (Usuario usuario)  throws PersistenceException;
     Usuario login  (String login, String senha) throws LoginException;
-    public void salvarImagemPerfil (Usuario usuario, byte[] imagem) throws FileNotFoundException, IOException;
+//    public void salvarImagemPerfil (Usuario usuario, byte[] imagem) throws FileNotFoundException, IOException;
 }

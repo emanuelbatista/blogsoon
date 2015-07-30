@@ -2,13 +2,17 @@ package br.edu.ifpb.blogsoon.webapp.controller.usuario;
 
 import br.edu.ifpb.blogsoon.core.entidades.Usuario;
 import br.edu.ifpb.blogsoon.manager.exceptions.LoginException;
+import br.edu.ifpb.blogsoon.manager.repositorios.usuario.UsuarioRepository;
 import br.edu.ifpb.blogsoon.manager.servicos.usuario.UsuarioService;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -24,16 +28,24 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Controller
 @RequestMapping("/usuario")
-public class UsuarioController {
+public class UsuarioController{
 
     @Autowired
     private UsuarioService servico;
+    
+    @Autowired
+    private UsuarioRepository UsuarioRepository;
 
     @ModelAttribute("usuario")
     public Usuario criarUsuario() {
         return new Usuario();
     }
 
+    @RequestMapping("/home")
+    public String home(){
+       return "home";
+    }
+    
     @RequestMapping({"/login"})
     public String login(HttpServletRequest request) {
         String login = request.getParameter("login");
@@ -41,7 +53,7 @@ public class UsuarioController {
         try {
             Usuario usuario = servico.login(login, senha);
             request.getSession().setAttribute("usuario", usuario);
-            return "home";
+            return "redirect:/usuario/home";
         } catch (LoginException e) {
             request.setAttribute("loginErro", e.getMessage());
             return "index";
@@ -66,24 +78,29 @@ public class UsuarioController {
     public String uploadImagemPerfil(@RequestParam("file") MultipartFile arquivo,
             HttpServletRequest request) {
         System.out.println("Entrando no método para salvar imagem do controlador");
-        List<String> erros = new ArrayList<>();
         if (!arquivo.isEmpty()) {
-            System.out.println("o arquivo não está vazio");
             try {
                 Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
-                servico.salvarImagemPerfil(usuario, arquivo.getBytes());
-                return "redirect:home";
+                usuario.setFoto(arquivo.getBytes());
+                UsuarioRepository.save(usuario);
             } catch (IOException ex) {
-                System.out.println("erro ao salvar arquivo");
-                ex.printStackTrace();
-                erros.add("Erro ao salvar imagem");
-                request.setAttribute("erros", erros);
-                return "/home";
+                ex.getStackTrace();
             }
         }
-        erros.add("O arquivo informado está vazio");
-        request.setAttribute("erros", erros);
-        return "/home";
+        return "redirect:/usuario/home";
+    }
+    
+    @RequestMapping(value="/imagem/perfil",produces = {MediaType.IMAGE_GIF_VALUE,MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE})
+    public void getImagemPerfil(HttpServletRequest request,HttpServletResponse response){
+        Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
+        try {
+            OutputStream out=response.getOutputStream();
+            out.write(usuario.getFoto());
+            out.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 }

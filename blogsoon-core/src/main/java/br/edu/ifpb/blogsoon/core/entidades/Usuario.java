@@ -6,6 +6,7 @@
 package br.edu.ifpb.blogsoon.core.entidades;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -28,7 +29,8 @@ public class Usuario implements Serializable {
     @NotEmpty(message = "A senha está vazia")
     private String senha;
     @Column(nullable = true)
-    private String foto;
+    @Lob
+    private byte[] foto;
 
     public Usuario() {
     }
@@ -47,11 +49,11 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    public String getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
     
