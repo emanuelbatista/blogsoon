@@ -7,7 +7,6 @@ package br.edu.ifpb.blogsoon.webapp.config;
 
 import br.edu.ifpb.blogsoon.webapp.filter.Autorizacao;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -17,7 +16,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author Emanuel Batista da Silva Filho - emanuelbatista2011@gmail.com
  */
 @Configuration
-@EnableWebMvc
 public class ConfigAutorizacao extends WebMvcConfigurerAdapter{
 
     @Override
@@ -25,10 +23,11 @@ public class ConfigAutorizacao extends WebMvcConfigurerAdapter{
         registry.addInterceptor(new Autorizacao()).addPathPatterns("/usuario/**").excludePathPatterns("/usuario/login");
     }
 
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.jsp("/WEB-INF/jsp/", ".jsp");
-    }
+
+    
+    
+    
+    
 
     
     
