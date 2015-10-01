@@ -1,13 +1,12 @@
 package br.edu.ifpb.blogsoon.core.entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
+
 
 /**
  *
  * @author marciel
  */
-@Entity
 public class Post {
 
     @Id
