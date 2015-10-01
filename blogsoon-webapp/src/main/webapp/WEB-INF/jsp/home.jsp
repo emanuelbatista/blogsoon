@@ -22,6 +22,10 @@
     </head>
 
     <body>
+        <div class="modal" id="newPostModal">
+            <jsp:include page="/WEB-INF/jsp/newPostModal.jsp"/>
+        </div>
+
         <div class="navbar-fixed">
             <nav class="blue-grey darken-4">
                 <a href="#!" class="brand-logo">BlogSoon</a>
@@ -52,6 +56,10 @@
                 </ul>
                 <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
             </nav>
+
+            <div class="fixed-action-btn modal-trigger" href="#newPostModal" style="bottom: 45px; right: 24px;">
+                <a class="btn-floating btn-large waves-effect waves-light grey darken-4"><i class="material-icons mdi-content-add"></i></a>
+            </div>
         </div>
         <div id="uploadImagem" class="modal">
             <div class="modal-content">

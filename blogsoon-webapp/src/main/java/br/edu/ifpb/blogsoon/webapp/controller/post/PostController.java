@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author marciel
  */
 @Controller
+@RequestMapping("/posts")
 public class PostController {
 
     @Autowired

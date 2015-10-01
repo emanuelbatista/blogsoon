@@ -29,4 +29,7 @@ nav #slide-out img{
     height:240px !important;
     width:240px !important;
 }
+#newPostModal input{
+    max-height: 100px;
+}
 
