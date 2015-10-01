@@ -18,8 +18,16 @@
                 <input name="file" class="file-path validate col s10" type="text" accept=".md"/>                                
             </div>
             <div class="input-field col s12">
-                <input id="login_login" type="text" class="validate" name="title">
-                <label for="login_login">Título</label>
+                <input id="titulo-novo-post" type="text" class="validate" name="title">
+                <label for="titulo-novo-post">Título</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="resumo-novo-post" type="text" class="validate" name="resumo">
+                <label for="resumo-novo-post">Resumo</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="palavras-chave-novo-post" type="text" class="validate" name="palavras_chave">
+                <label for="palavras-chave-novo-post">Palavras-chave (Separadas por vírgula)</label>
             </div>
             <div class="input-field col s6">
                 <input type="submit" class="validate btn">                    

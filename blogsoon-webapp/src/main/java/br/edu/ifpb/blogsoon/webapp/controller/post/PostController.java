@@ -1,14 +1,17 @@
 package br.edu.ifpb.blogsoon.webapp.controller.post;
 
 import br.edu.ifpb.blogsoon.core.entidades.Post;
-import br.edu.ifpb.blogsoon.manager.repositorios.post.PostRepository;
+import br.edu.ifpb.blogsoon.core.entidades.Usuario;
+import br.edu.ifpb.blogsoon.manager.servicos.post.PostService;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 import org.pegdown.PegDownProcessor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,9 +27,13 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/posts")
 public class PostController {
 
-    @Autowired
-    private PostRepository repository;
+    private PostService postService;
 
+    @Inject
+    public void setPostService(PostService postService) {
+        this.postService = postService;
+    }
+    
     @RequestMapping(value = "/upload", method = RequestMethod.GET)
     public @ResponseBody
     String provideUploadInfo() {
@@ -35,8 +42,10 @@ public class PostController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public @ResponseBody
-    String handleFileUpload(
+    String handleFileUpload( HttpSession session,
             @RequestParam("title") String title,
+            String palavras_chave,
+            String resumo,
             @RequestParam("file") MultipartFile file) {
 
         if (!file.isEmpty()) {
@@ -52,8 +61,8 @@ public class PostController {
                 for (String a : list) {
                     content = content.concat(processor.markdownToHtml(a));
                 }
-                
-                repository.save(new Post(title, content));
+                Usuario usuario = (Usuario) session.getAttribute("usuario");
+                postService.salvar(new Post(title, content, usuario.getLogin(), Arrays.asList(palavras_chave.split(",")), resumo));
                 
                 return content;
             } catch (Exception e) {

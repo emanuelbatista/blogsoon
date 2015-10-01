@@ -1,0 +1,27 @@
+/* 
+    Created on : 01/10/2015, 17:28:02
+    Author     : douglasgabriel
+*/
+.muted{
+    color:grey;
+}
+.section-title{
+    text-align: center;
+}
+.posts .post{
+    background-color: white;
+    padding: 10px 0px 0px 0px;        
+    max-height:250px;
+    overflow-y: auto;
+}
+.posts .post > *{
+    margin:10px;
+}
+.posts .post .post_footer{
+    margin:0px;
+    border-top:1px solid rgba(0,0,0,0.2);    
+    width:100% !important;
+    padding:5px 10px;
+    position:relative;
+    bottom:0px;
+}
