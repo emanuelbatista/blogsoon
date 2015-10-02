@@ -31,5 +31,10 @@ public class PostServiceImpl implements PostService{
     public void salvar(Post post) {
         repository.save(post);
     }
+
+    @Override
+    public Post recuperar(String id) {
+        return repository.findOne(id);
+    }
     
 }

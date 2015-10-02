@@ -1,0 +1,25 @@
+/* 
+    Created on : 01/10/2015, 22:25:32
+    Author     : douglasgabriel
+*/
+
+header{
+    padding:20px;
+    color:white;
+    height:300px;
+}
+header .content{
+    width:70%;
+    margin:0 auto;
+}
+.post.content{
+    width:70%;
+    margin:0 auto;
+    background-color: white;
+    padding:20px;
+    position:relative;
+    bottom:100px;
+}
+.post.content img{
+    max-width: 100%;
+}

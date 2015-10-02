@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <html>
@@ -19,45 +19,33 @@
         <script type="text/javascript" src="/js/materialize.min.js" ></script>
     </head>
 
-    <body class="grey lighten-5">
-        <div class="navbar-fixed">
-            <nav>
-                <div class="nav-wrapper blue-grey darken-4">
-                    <div class="col s12">
-                        <a href="#!" class="brand-logo">BlogSoon</a>
-                        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-action-view-quilt"></i></a>
-                        <ul class="right hide-on-med-and-down">
-                            <li><a href="#login" class="modal-trigger">Login</a></li>
-                            <li><a href="#cadastro" class="modal-trigger">Cadastro</a></li>
-                        </ul>
-                        <ul class="side-nav" id="mobile-demo">
-                            <li><a href="#login" class="modal-trigger">Login</a></li>
-                            <li><a href="#cadastro" class="modal-trigger">Cadastro</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <div id="cadastro" class="modal">
-            <jsp:include page="/WEB-INF/jsp/cadastro.jsp"/>
-        </div>
-        <div id="login" class="modal">
-            <jsp:include page="/WEB-INF/jsp/login.jsp"/>
-        </div>
-                
-        <div class="posts row">
-            <h5 class="muted section-title">Em alta</h5>
-            <jsp:include page="/WEB-INF/jsp/listagemPosts.jsp" />
-        </div>
-        
-        <script>
-            $(".button-collapse").sideNav();
-            $(document).ready(function () {
-                $('.modal-trigger').leanModal();
-            });
+    <body class="grey lighten-4">
+    <c:if test="${sessionScope.usuario != null}">
+        <jsp:include page="/WEB-INF/jsp/usuarioLogadoTopbar.jsp"/>
+    </c:if>
+    <c:if test="${sessionScope.usuario == null}">
+        <jsp:include page="/WEB-INF/jsp/usuarioNaoLogadoTopbar.jsp"/>
+    </c:if>
+    <div id="cadastro" class="modal">
+        <jsp:include page="/WEB-INF/jsp/cadastro.jsp"/>
+    </div>
+    <div id="login" class="modal">
+        <jsp:include page="/WEB-INF/jsp/login.jsp"/>
+    </div>
+
+    <div class="posts row">
+        <h5 class="muted section-title">Em alta</h5>
+        <jsp:include page="/WEB-INF/jsp/listagemPosts.jsp" />
+    </div>
+
+    <script>
+        $(".button-collapse").sideNav();
+        $(document).ready(function () {
+            $('.modal-trigger').leanModal();
+        });
 
 
-        </script>
+    </script>
 
-    </body>
+</body>
 </html>

@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface PostService {
     
+    public Post recuperar(String id);
+    
     public List<Post> recuperarTodos ();
     
     public void salvar (Post post);

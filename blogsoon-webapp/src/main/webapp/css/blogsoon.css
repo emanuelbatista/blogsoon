@@ -2,6 +2,39 @@
     Created on : 01/10/2015, 17:28:02
     Author     : douglasgabriel
 */
+nav{
+    box-shadow:none;
+}
+nav .nav-wrapper{
+    width:80%;
+    margin:0 auto;
+}
+nav .right img{
+    width:40px;
+    border-radius: 100%;
+    display:inline !important;
+    margin:10px;
+}
+
+nav .right h5{
+    display:inline !important;
+    position:relative;
+    bottom:20px;
+}
+
+nav .top-bar a{    
+    margin:0px;
+    height:64px
+}
+
+nav #slide-out li, #slide-out a{
+    padding:0px 0px 0px 0px !important;    
+}
+
+nav #slide-out img{
+    height:240px !important;
+    width:240px !important;
+}
 .muted{
     color:grey;
 }
@@ -11,8 +44,9 @@
 .posts .post{
     background-color: white;
     padding: 10px 0px 0px 0px;        
-    max-height:250px;
+    height:250px;
     overflow-y: auto;
+    margin-top:10px;
 }
 .posts .post > *{
     margin:10px;

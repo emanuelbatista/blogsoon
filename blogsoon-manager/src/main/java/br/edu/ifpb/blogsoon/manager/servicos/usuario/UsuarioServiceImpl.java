@@ -64,4 +64,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 //        System.out.println("Arquivo atribuido ao usuario");
 //    }
 
+    @Override
+    public Usuario recuperar(String login) {
+        return repositorio.findOne(login);
+    }
+
 }
