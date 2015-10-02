@@ -2,7 +2,9 @@
 <div class="navbar-fixed">
     <nav class="blue-grey darken-4">
         <div class="nav-wrapper blue-grey darken-4">
-            <a href="#!" class="brand-logo">BlogSoon</a>
+            <a href="#!" class="brand-logo">
+                <img src="../../imagens/logo.png">
+            </a>
             <ul class="right top-bar">
                 <li>
                     <a href="#!" onclick="$('.button-collapse').sideNav('show');">
