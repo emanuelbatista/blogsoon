@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -58,6 +59,12 @@ public class UsuarioController{
             request.setAttribute("loginErro", e.getMessage());
             return "index";
         }
+    }
+    
+    @RequestMapping("/logout")
+    public String logout (HttpSession session){
+        session.invalidate();
+        return "redirect:/";
     }
 
     @RequestMapping("/cadastro")

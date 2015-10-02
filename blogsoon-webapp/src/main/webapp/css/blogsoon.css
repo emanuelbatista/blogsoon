@@ -32,8 +32,16 @@ nav #slide-out li, #slide-out a{
 }
 
 nav #slide-out img{
+    height:100% !important;
+    width:100% !important;
+}
+#slide-out #slide-out-user-image{
     height:240px !important;
     width:240px !important;
+}
+#slide-out .menu-item{
+    color:black;
+    padding-left:20px !important;
 }
 .muted{
     color:grey;
