@@ -6,7 +6,7 @@
 header{
     padding:20px;
     color:white;
-    height:300px;
+    padding-bottom: 150px;
 }
 header .content{
     width:70%;
@@ -22,4 +22,12 @@ header .content{
 }
 .post.content img{
     max-width: 100%;
+}
+@media (max-width:700px){
+    .post.content{
+        width:90%;       
+    } 
+    header .content{
+        width:90%;
+    }
 }
