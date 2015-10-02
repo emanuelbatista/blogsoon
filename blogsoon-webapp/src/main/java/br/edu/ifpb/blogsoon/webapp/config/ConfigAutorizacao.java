@@ -20,7 +20,7 @@ public class ConfigAutorizacao extends WebMvcConfigurerAdapter{
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new Autorizacao()).addPathPatterns("/usuario/**").excludePathPatterns("/usuario/login");
+        registry.addInterceptor(new Autorizacao()).addPathPatterns("/usuario/**").excludePathPatterns("/usuario/login").excludePathPatterns("/usuario/cadastro");
     }
 
 

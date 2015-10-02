@@ -42,12 +42,12 @@ public class UsuarioController{
         return new Usuario();
     }
 
-    @RequestMapping("/home")
+    @RequestMapping("home")
     public String home(){
        return "home";
     }
     
-    @RequestMapping({"/login"})
+    @RequestMapping({"login"})
     public String login(HttpServletRequest request) {
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
@@ -61,14 +61,14 @@ public class UsuarioController{
         }
     }
     
-    @RequestMapping("/logout")
+    @RequestMapping("logout")
     public String logout (HttpSession session){
         session.invalidate();
         return "redirect:/";
     }
 
-    @RequestMapping("/cadastro")
-    public String cadastro(@Valid Usuario usuario, BindingResult result) {
+    @RequestMapping("cadastro")
+    public String cadastro(@Valid @ModelAttribute Usuario usuario, BindingResult result) {
         if (result.hasErrors()) {
             return "index";
         }
@@ -81,7 +81,7 @@ public class UsuarioController{
         return "redirect:/";
     }
 
-    @RequestMapping("/salvar/imagem")
+    @RequestMapping("salvar/imagem")
     public String uploadImagemPerfil(@RequestParam("file") MultipartFile arquivo,
             HttpServletRequest request) {
         System.out.println("Entrando no método para salvar imagem do controlador");
@@ -97,7 +97,7 @@ public class UsuarioController{
         return "redirect:/usuario/home";
     }
     
-    @RequestMapping(value="/imagem/perfil",produces = {MediaType.IMAGE_GIF_VALUE,MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE})
+    @RequestMapping(value="imagem/perfil",produces = {MediaType.IMAGE_GIF_VALUE,MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE})
     public void getImagemPerfil(HttpServletRequest request,HttpServletResponse response){
         Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
         try {
