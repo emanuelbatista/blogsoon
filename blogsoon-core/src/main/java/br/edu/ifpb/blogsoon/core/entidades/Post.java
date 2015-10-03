@@ -1,7 +1,10 @@
 package br.edu.ifpb.blogsoon.core.entidades;
 
 import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.FetchType;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 
 /**
@@ -14,6 +17,9 @@ public class Post {
     private String id;
     private String title;
     private String content;
+    @Transient
+    @Basic(fetch = FetchType.LAZY)
+    private List<Avaliacao> avaliacaos;
     private String authorLogin;
     private List<String> keywords;
     private String resumo;
@@ -75,6 +81,14 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public List<Avaliacao> getAvaliacaos() {
+        return avaliacaos;
+    }
+
+    public void setAvaliacaos(List<Avaliacao> avaliacaos) {
+        this.avaliacaos = avaliacaos;
     }
 
     @Override

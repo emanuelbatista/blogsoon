@@ -7,6 +7,7 @@ package br.edu.ifpb.blogsoon.manager.repositorios.avaliacao;
 
 import br.edu.ifpb.blogsoon.core.entidades.Avaliacao;
 import br.edu.ifpb.blogsoon.core.entidades.AvaliacaoEnum;
+import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -22,4 +23,6 @@ public interface AvaliacaoRepository extends CrudRepository<Avaliacao, Long>{
     
     @Query("SELECT COUNT(a) FROM Avaliacao a WHERE a.idPost=:idPost AND a.tipo=:tipo")
     public long totalAvaliacaoPostPorTipo(@Param("idPost")String idPost,@Param("tipo")AvaliacaoEnum tipo);
+    
+    public List<Avaliacao> findAvaliacaoByIdPost(String idPost);
 }

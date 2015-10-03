@@ -8,6 +8,7 @@ package br.edu.ifpb.blogsoon.manager.servicos.avaliacao;
 import br.edu.ifpb.blogsoon.core.entidades.Avaliacao;
 import br.edu.ifpb.blogsoon.core.entidades.AvaliacaoEnum;
 import br.edu.ifpb.blogsoon.manager.repositorios.avaliacao.AvaliacaoRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,10 @@ public class AvaliacaoService {
     @Autowired
     private AvaliacaoRepository repository;
     
+    public Avaliacao recuperar(Long id){
+        return repository.findOne(id);
+    }
+    
     public Avaliacao salvar(Avaliacao avaliacao){
         return repository.save(avaliacao);
     }
@@ -31,6 +36,10 @@ public class AvaliacaoService {
     
     public long totalAvaliacaoPorTipo(String idPost,AvaliacaoEnum tipo){
         return repository.totalAvaliacaoPostPorTipo(idPost, tipo);
+    }
+    
+    public List<Avaliacao> buscarPorIdPost(String idPost){
+        return repository.findAvaliacaoByIdPost(idPost);
     }
 
 }
