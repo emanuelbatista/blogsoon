@@ -23,6 +23,49 @@ header .content{
 .post.content img{
     max-width: 100%;
 }
+footer{
+    width: 100%;
+    padding:5px;
+    position:fixed;
+    bottom: 0px;
+    margin:0px !important;
+}
+footer .post-avaliacao{
+    padding-top:22px !important;
+}
+footer .post-avaliacao > *{
+    display:inline;
+    margin-top: 5px;
+    color:grey;
+    margin:10px;
+}
+footer .post-avaliacao  i{
+    margin-right:5px;
+    font-size: 20px;
+}
+p.avaliacao-positiva{
+    color:green;
+}
+p.avaliacao-negativa{
+    color:red;
+}
+footer form input{
+    margin-bottom: 0px !important;
+}
+footer form .btn{
+    background-color: rgba(0,0,0,0);
+    box-shadow: 0px 0px 0px black;
+    float:none;
+    text-align: left;
+    width: auto !important;
+    top:20px;
+}
+footer form .btn:hover{
+    background-color: rgba(0,0,0,0);
+    box-shadow: 0px 0px 0px black;
+    float:none;
+    text-align: left;
+}
 @media (max-width:700px){
     .post.content{
         width:90%;       

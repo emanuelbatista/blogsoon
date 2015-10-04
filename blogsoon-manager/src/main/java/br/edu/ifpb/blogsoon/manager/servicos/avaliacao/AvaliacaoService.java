@@ -8,6 +8,7 @@ package br.edu.ifpb.blogsoon.manager.servicos.avaliacao;
 import br.edu.ifpb.blogsoon.core.entidades.Avaliacao;
 import br.edu.ifpb.blogsoon.core.entidades.AvaliacaoEnum;
 import br.edu.ifpb.blogsoon.manager.repositorios.avaliacao.AvaliacaoRepository;
+import com.sun.media.sound.AlawCodec;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,10 @@ public class AvaliacaoService {
     
     public List<Avaliacao> buscarPorIdPost(String idPost){
         return repository.findAvaliacaoByIdPost(idPost);
+    }
+    
+    public List<Avaliacao> buscarPorIdPostETipo (String idPost, AvaliacaoEnum tipo){
+        return repository.findAvaliacaoByIdPostAndTipo(idPost, tipo);
     }
 
 }

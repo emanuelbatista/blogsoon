@@ -32,12 +32,28 @@
             <div class="content">
                 <h3>${post.title}</h3>
                 <p class="muted">${requestScope.usuario.nome}</p>
-                <p class="muted">${post.keywords}</p>
+                <p class="muted">${post.keywords}</p>                
             </div>
         </header>
         <div class="post content z-depth-1">
             ${post.content}
         </div>
+        <footer class="blue-grey darken-4 row">
+            <div class="post-avaliacao col l2 m3">
+                <input type="hidden" value="${post.id}"  id="idPost"/> 
+                <p class="avaliacao-positiva" onclick="avaliar('CURTIR')"><i class="mdi-action-thumb-up"></i>${post.avaliacoesPositivas.size()}</p>
+                <p class="avaliacao-negativa" onclick="avaliar('NAO_CURTIR')"><i class="mdi-action-thumb-down"></i>${post.avaliacoesNegativas.size()}</p>
+            </div>
+            <form>
+                <div class="input-field col l9 m8 row">
+                    <input id="first_name" type="text" class="validate col l11 m8">
+                    <label for="first_name">Escreva um comentário</label>
+                </div>
+                <button class="btn waves-effect waves-light col l1 m2" type="submit" name="action">
+                    <i class="mdi-content-send right"></i>
+                </button>
+            </form>
+        </footer>
     </body>
     <script>
         $(".button-collapse").sideNav({
@@ -46,5 +62,26 @@
         $(document).ready(function () {
             $('.modal-trigger').leanModal();
         });
+        function avaliar(avaliacao) {
+            alert($('#idPost').attr('value'));
+            var formData = new FormData();                        
+            formData.append('idPost', $('#idPost').attr('value'));
+            formData.append('tipo', avaliacao);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/avaliacao/add', true);
+            xhr.onload = function () {
+                alert(xhr.status);                
+                if (xhr.status === 200) {
+                    var elemento;
+                    if (avaliacao === 'CURTIR')
+                        elemento = $('.avaliacao-positiva').append('+1');
+                    else if (avaliacao === 'NAO_CURTIR')
+                        elemento = $('.avaliacao-negativa').append('+1');
+                    Materialize.toast('Obrigado por avaliar este post', 14000);
+                }else
+                    Materialize.toast('Ocorreu um erro ao avaliar post, tente mais tarde', 14000);
+            };
+            xhr.send(formData);
+        }
     </script>
 </html>

@@ -25,4 +25,6 @@ public interface AvaliacaoRepository extends CrudRepository<Avaliacao, Long>{
     public long totalAvaliacaoPostPorTipo(@Param("idPost")String idPost,@Param("tipo")AvaliacaoEnum tipo);
     
     public List<Avaliacao> findAvaliacaoByIdPost(String idPost);
+    
+    public List<Avaliacao> findAvaliacaoByIdPostAndTipo (String idPost, AvaliacaoEnum tipo);
 }

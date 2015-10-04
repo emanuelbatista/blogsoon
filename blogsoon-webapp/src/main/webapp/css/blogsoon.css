@@ -70,3 +70,16 @@ nav #slide-out img{
     position:relative;
     bottom:0px;
 }
+.posts .post .post_footer p{
+    margin:0px;    
+}
+.posts .post .post_footer .post-avaliacao > *{
+    display: inline;
+    margin:0px 5px;
+}
+.posts .post .post_footer p.avaliacao-positiva{
+    color:green;
+}
+.posts .post .post_footer p.avaliacao-negativa{
+    color:red;
+}

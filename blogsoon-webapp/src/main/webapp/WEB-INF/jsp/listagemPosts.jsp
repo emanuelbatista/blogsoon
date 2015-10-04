@@ -14,8 +14,12 @@
                 <h5>${post.title}</h5>
                 <p class="muted">${post.resumo}</p>
                 <div class="post_footer">
-                    <p class="muted"><b>Autor: </b>${post.authorLogin}</p>
+                    <p class="muted">por ${post.authorLogin}</p>
                     <p class="muted"><b>Palavras-chave: </b>${post.keywords}</p>
+                    <div class="post-avaliacao">
+                        <p class="avaliacao-positiva"><i class="mdi-action-thumb-up"></i>${post.avaliacoesPositivas.size()}</p>
+                        <p class="avaliacao-negativa"><i class="mdi-action-thumb-down"></i>${post.avaliacoesNegativas.size()}</p>
+                    </div>
                 </div>
             </div>
         </div>

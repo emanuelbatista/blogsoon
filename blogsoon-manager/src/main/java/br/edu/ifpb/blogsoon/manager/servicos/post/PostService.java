@@ -13,5 +13,7 @@ public interface PostService {
     
     public List<Post> recuperarTodos ();
     
+    public List<Post> recuperarTodosPorOrdemDeAvaliacao();
+    
     public void salvar (Post post);
 }

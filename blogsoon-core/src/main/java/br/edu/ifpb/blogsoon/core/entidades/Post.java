@@ -11,7 +11,7 @@ import org.springframework.data.annotation.Transient;
  *
  * @author marciel
  */
-public class Post {
+public class Post implements Comparable<Post>{
 
     @Id
     private String id;
@@ -19,7 +19,7 @@ public class Post {
     private String content;
     @Transient
     @Basic(fetch = FetchType.LAZY)
-    private List<Avaliacao> avaliacaos;
+    private List<Avaliacao> avaliacoesPositivas, avaliacoesNegativas;    
     private String authorLogin;
     private List<String> keywords;
     private String resumo;
@@ -83,17 +83,32 @@ public class Post {
         this.content = content;
     }
 
-    public List<Avaliacao> getAvaliacaos() {
-        return avaliacaos;
+    public List<Avaliacao> getAvaliacoesPositivas() {
+        return avaliacoesPositivas;
     }
 
-    public void setAvaliacaos(List<Avaliacao> avaliacaos) {
-        this.avaliacaos = avaliacaos;
+    public void setAvaliacoesPositivas(List<Avaliacao> avaliacoesPositivas) {
+        this.avaliacoesPositivas = avaliacoesPositivas;
+    }
+
+    public List<Avaliacao> getAvaliacoesNegativas() {
+        return avaliacoesNegativas;
+    }
+
+    public void setAvaliacoesNegativas(List<Avaliacao> avaliacoesNegativas) {
+        this.avaliacoesNegativas = avaliacoesNegativas;
     }
 
     @Override
     public String toString() {
         return String.format("Post{ id=%s, title=%s, content=%s}", id, title, content);
+    }
+
+    @Override
+    public int compareTo(Post outro) {
+        int thisMediaAvaliacao = (this.getAvaliacoesPositivas().size() + this.getAvaliacoesNegativas().size()) / 2;
+        int outroMediaAvaliacao = (outro.getAvaliacoesPositivas().size() + outro.getAvaliacoesNegativas().size()) / 2;
+        return thisMediaAvaliacao - outroMediaAvaliacao;
     }
 
 }
