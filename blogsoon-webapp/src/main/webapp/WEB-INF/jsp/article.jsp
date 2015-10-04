@@ -41,8 +41,14 @@
         <footer class="blue-grey darken-4 row">
             <div class="post-avaliacao col l2 m3">
                 <input type="hidden" value="${post.id}"  id="idPost"/> 
-                <p class="avaliacao-positiva" onclick="avaliar('CURTIR')"><i class="mdi-action-thumb-up"></i>${post.avaliacoesPositivas.size()}</p>
-                <p class="avaliacao-negativa" onclick="avaliar('NAO_CURTIR')"><i class="mdi-action-thumb-down"></i>${post.avaliacoesNegativas.size()}</p>
+                <c:if test="${!avaliouPost}">
+                    <p class="avaliacao-positiva" onclick="avaliar('CURTIR')"><i class="mdi-action-thumb-up"></i>${post.avaliacoesPositivas.size()}</p>
+                    <p class="avaliacao-negativa" onclick="avaliar('NAO_CURTIR')"><i class="mdi-action-thumb-down"></i>${post.avaliacoesNegativas.size()}</p>
+                </c:if>
+                <c:if test="${avaliouPost}">
+                    <p class="avaliacao-positiva" onclick="Materialize.toast('Você já avaliou o post')"><i class="mdi-action-thumb-up"></i>${post.avaliacoesPositivas.size()}</p>
+                    <p class="avaliacao-negativa" onclick="Materialize.toast('Você já avaliou o post')"><i class="mdi-action-thumb-down"></i>${post.avaliacoesNegativas.size()}</p>
+                </c:if>
             </div>
             <form>
                 <div class="input-field col l9 m8 row">
@@ -63,14 +69,12 @@
             $('.modal-trigger').leanModal();
         });
         function avaliar(avaliacao) {
-            alert($('#idPost').attr('value'));
-            var formData = new FormData();                        
+            var formData = new FormData();
             formData.append('idPost', $('#idPost').attr('value'));
             formData.append('tipo', avaliacao);
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/avaliacao/add', true);
             xhr.onload = function () {
-                alert(xhr.status);                
                 if (xhr.status === 200) {
                     var elemento;
                     if (avaliacao === 'CURTIR')
@@ -78,8 +82,10 @@
                     else if (avaliacao === 'NAO_CURTIR')
                         elemento = $('.avaliacao-negativa').append('+1');
                     Materialize.toast('Obrigado por avaliar este post', 14000);
-                }else
-                    Materialize.toast('Ocorreu um erro ao avaliar post, tente mais tarde', 14000);
+                } else if (xhr.status === 403)
+                    Materialize.toast('Você já valiou este post', 14000);
+                else
+                    Materialize.toast('É preciso estar logado para votar', 14000);
             };
             xhr.send(formData);
         }

@@ -38,6 +38,7 @@ footer .post-avaliacao > *{
     margin-top: 5px;
     color:grey;
     margin:10px;
+    cursor: pointer;
 }
 footer .post-avaliacao  i{
     margin-right:5px;

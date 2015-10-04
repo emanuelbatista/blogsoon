@@ -2,6 +2,7 @@ package br.edu.ifpb.blogsoon.manager.servicos.post;
 
 import br.edu.ifpb.blogsoon.core.entidades.AvaliacaoEnum;
 import br.edu.ifpb.blogsoon.core.entidades.Post;
+import br.edu.ifpb.blogsoon.core.entidades.Usuario;
 import br.edu.ifpb.blogsoon.manager.repositorios.post.PostRepository;
 import br.edu.ifpb.blogsoon.manager.servicos.avaliacao.AvaliacaoService;
 import java.util.Collections;
@@ -56,6 +57,11 @@ public class PostServiceImpl implements PostService{
         post.setAvaliacoesPositivas(avaliacaoService.buscarPorIdPostETipo(id, AvaliacaoEnum.CURTIR));
         post.setAvaliacoesNegativas(avaliacaoService.buscarPorIdPostETipo(id, AvaliacaoEnum.NAO_CURTIR));
         return post;
+    }
+    
+    @Override
+    public boolean usuarioAvaliouPost (String idPost, Usuario usuario){
+        return avaliacaoService.buscarPorIdPostEUsuario(idPost, usuario).size() >= 1;
     }
     
 }

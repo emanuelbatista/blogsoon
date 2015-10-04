@@ -33,8 +33,10 @@ public class AvaliacaoController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<String> addAvaliacao(@RequestParam("idPost") String idPost,
             @RequestParam("tipo") String tipo, HttpSession session) {
-        Usuario usuario = (Usuario) session.getAttribute("usuario");                
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
         if (usuario != null) {
+            if (avaliacaoService.buscarPorIdPostEUsuario(idPost, usuario).size() >= 1)
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             Avaliacao avaliacao = new Avaliacao();
             avaliacao.setIdPost(idPost);
             avaliacao.setUsuario(usuario);

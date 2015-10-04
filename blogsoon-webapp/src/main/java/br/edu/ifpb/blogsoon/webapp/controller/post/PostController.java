@@ -84,10 +84,12 @@ public class PostController {
     
     @RequestMapping("/{id}")
     public String loadPostPage (HttpServletRequest request
-            , @PathVariable String id){
+            , @PathVariable String id, HttpSession session){
         Post post;
-        if ((post = postService.recuperar(id)) != null){
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        if ((post = postService.recuperar(id)) != null){            
             request.setAttribute("post", post);
+            request.setAttribute("avaliouPost", postService.usuarioAvaliouPost(id, usuario));
             request.setAttribute("usuario", usuarioService.recuperar(post.getAuthorLogin()));
             return "/article";
         }

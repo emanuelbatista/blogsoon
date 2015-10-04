@@ -7,6 +7,7 @@ package br.edu.ifpb.blogsoon.manager.servicos.avaliacao;
 
 import br.edu.ifpb.blogsoon.core.entidades.Avaliacao;
 import br.edu.ifpb.blogsoon.core.entidades.AvaliacaoEnum;
+import br.edu.ifpb.blogsoon.core.entidades.Usuario;
 import br.edu.ifpb.blogsoon.manager.repositorios.avaliacao.AvaliacaoRepository;
 import com.sun.media.sound.AlawCodec;
 import java.util.List;
@@ -45,6 +46,10 @@ public class AvaliacaoService {
     
     public List<Avaliacao> buscarPorIdPostETipo (String idPost, AvaliacaoEnum tipo){
         return repository.findAvaliacaoByIdPostAndTipo(idPost, tipo);
+    }
+    
+    public List<Avaliacao> buscarPorIdPostEUsuario (String idPost, Usuario usuario){
+        return repository.findAvaliacaoByIdPostAndUsuario(idPost, usuario);
     }
 
 }

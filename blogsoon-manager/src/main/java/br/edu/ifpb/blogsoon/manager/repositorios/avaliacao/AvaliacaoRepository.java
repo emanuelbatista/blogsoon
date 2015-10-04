@@ -7,10 +7,13 @@ package br.edu.ifpb.blogsoon.manager.repositorios.avaliacao;
 
 import br.edu.ifpb.blogsoon.core.entidades.Avaliacao;
 import br.edu.ifpb.blogsoon.core.entidades.AvaliacaoEnum;
+import br.edu.ifpb.blogsoon.core.entidades.Usuario;
 import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Isolation;
 
 /**
  *
@@ -26,5 +29,8 @@ public interface AvaliacaoRepository extends CrudRepository<Avaliacao, Long>{
     
     public List<Avaliacao> findAvaliacaoByIdPost(String idPost);
     
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public List<Avaliacao> findAvaliacaoByIdPostAndTipo (String idPost, AvaliacaoEnum tipo);
+    
+    public List<Avaliacao> findAvaliacaoByIdPostAndUsuario (String idPost, Usuario usuario);
 }
