@@ -31,11 +31,12 @@ public class PostServiceImpl implements PostService{
     
     public List<Post> recuperarTodos (){
         Sort ordem = new Sort(Sort.Direction.ASC, "title");
-        List<Post> posts=repository.findAll(ordem);
+        List<Post> posts=repository.findAll(ordem);        
         posts.forEach(x->{
             x.setAvaliacoesPositivas(avaliacaoService.buscarPorIdPostETipo(x.getId(), AvaliacaoEnum.CURTIR));
             x.setAvaliacoesNegativas(avaliacaoService.buscarPorIdPostETipo(x.getId(), AvaliacaoEnum.NAO_CURTIR));
         });
+        Collections.sort(posts);
         return posts;
     }
     
