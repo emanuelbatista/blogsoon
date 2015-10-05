@@ -7,7 +7,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>blogsoon-manager</module>
-    <module>blogsoon-webapp</module>
+        <module>blogsoon-webapp</module>
         <module>blogsoon-core</module>
     </modules>
     <properties>
@@ -42,26 +42,34 @@
             <version>18.0</version>
         </dependency>
         
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.6.3</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
         <!--        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.4-1201-jdbc41</version>
         </dependency>-->
         <!--banco de dados derby-->
-<!--        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>10.10.1.1</version>
-        </dependency>
-       cliente do banco de dados derby
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
-            <version>10.10.1.1</version>
-        </dependency>
-    --></dependencies>
+        <!--        <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derby</artifactId>
+                <version>10.10.1.1</version>
+            </dependency>
+           cliente do banco de dados derby
+            <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derbyclient</artifactId>
+                <version>10.10.1.1</version>
+            </dependency>
+        -->
+    </dependencies>
 
-<!--    <build>
+    <!--    <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
