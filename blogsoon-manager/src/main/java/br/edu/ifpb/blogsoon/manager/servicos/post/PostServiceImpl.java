@@ -9,6 +9,8 @@ import br.edu.ifpb.blogsoon.manager.repositorios.grafo.PostGrafoRepository;
 import br.edu.ifpb.blogsoon.manager.repositorios.grafo.TagGrafoRepository;
 import br.edu.ifpb.blogsoon.manager.repositorios.post.PostRepository;
 import br.edu.ifpb.blogsoon.manager.repositorios.post.redis.PostCache;
+import br.edu.ifpb.blogsoon.manager.service.grafo.PostGrafoService;
+import br.edu.ifpb.blogsoon.manager.service.grafo.TagGrafoService;
 import br.edu.ifpb.blogsoon.manager.servicos.avaliacao.AvaliacaoService;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,23 +31,17 @@ import org.springframework.data.domain.Sort;
 public class PostServiceImpl implements PostService {
 
     @Inject
-    private PostRepository repository;    
-    private AvaliacaoService avaliacaoService;
-    private PostGrafoRepository postGrafoRepository;
-    @Autowired
-    private TagGrafoRepository tagGrafoRepository;
-
+    private PostRepository repository;   
     @Inject
-    public void setAvaliacaoService(AvaliacaoService avaliacaoService) {
-        this.avaliacaoService = avaliacaoService;
-    }
+    private AvaliacaoService avaliacaoService;
+    @Autowired
+    private PostGrafoService postGrafoService;
+    @Autowired
+    private TagGrafoService tagGrafoService;
+
     @Inject
     private PostCache cache;
 
-    @Inject
-    public void setRepository(PostRepository repository) {
-        this.repository = repository;
-    }
 
     public List<Post> recuperarTodos() {
         Sort ordem = new Sort(Sort.Direction.ASC, "title");
@@ -70,13 +66,13 @@ public class PostServiceImpl implements PostService {
         repository.save(post);
         Set<TagGrafo> lista = new HashSet<>();
         for (String s : tags) {
-            TagGrafo tg = tagGrafoRepository.findOne(s);
+            TagGrafo tg = tagGrafoService.findOne(s);
             if (tg == null) {
                 tg = new TagGrafo(s);
             }
             lista.add(tg);
         }
-        postGrafoRepository.save(new PostGrafo(post.getId(), lista));
+        postGrafoService.save(new PostGrafo(post.getId(), lista));
     }
 
     @Override
@@ -100,7 +96,7 @@ public class PostServiceImpl implements PostService {
     }
     
     public List<Post> recuperarPostsComMesmaTag (Post post){
-        Set<PostGrafo> lista = postGrafoRepository.getPostWithSameTag(post.getId());
+        Set<PostGrafo> lista = postGrafoService.getPostWithSameTag(post.getId());
         List<Post> posts = new ArrayList<>();
         for (PostGrafo pg : lista){
             posts.add(repository.findOne(pg.getId()));

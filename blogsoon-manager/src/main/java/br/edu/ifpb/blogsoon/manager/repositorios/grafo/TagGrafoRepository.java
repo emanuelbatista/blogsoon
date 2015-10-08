@@ -1,7 +1,6 @@
 package br.edu.ifpb.blogsoon.manager.repositorios.grafo;
 
 import br.edu.ifpb.blogsoon.core.entidades.grafo.TagGrafo;
-import javax.inject.Named;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
 import org.springframework.stereotype.Repository;

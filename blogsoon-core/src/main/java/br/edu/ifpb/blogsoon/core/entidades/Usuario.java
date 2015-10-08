@@ -9,8 +9,10 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -20,16 +22,17 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Usuario implements Serializable {
      
-    @NotEmpty(message = "O nome está vazio")
+    @NotBlank(message = "O nome está vazio")
     private String nome;
     private String sobrenome;
     @Id
-    @NotEmpty(message = "O login está vazio")    
+    @NotBlank(message = "O login está vazio")    
     private String login;
     @NotEmpty(message = "A senha está vazia")
     private String senha;
     @Column(nullable = true)
     @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] foto;
 
     public Usuario() {

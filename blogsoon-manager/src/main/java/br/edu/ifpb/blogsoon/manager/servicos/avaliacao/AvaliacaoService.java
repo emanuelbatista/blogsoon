@@ -9,7 +9,6 @@ import br.edu.ifpb.blogsoon.core.entidades.Avaliacao;
 import br.edu.ifpb.blogsoon.core.entidades.AvaliacaoEnum;
 import br.edu.ifpb.blogsoon.core.entidades.Usuario;
 import br.edu.ifpb.blogsoon.manager.repositorios.avaliacao.AvaliacaoRepository;
-import com.sun.media.sound.AlawCodec;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

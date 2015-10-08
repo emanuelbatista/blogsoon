@@ -5,17 +5,18 @@ import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
+
 /**
  *
  * @author douglasgabriel
  * @version 0.1
  */
-@NodeEntity(label = "Tag")
+@NodeEntity
 public class TagGrafo {
 
     @GraphId
     private String nome;
-    @Relationship(type = "POSSUI", direction = Relationship.OUTGOING)
+    @Relationship(direction = Relationship.OUTGOING,type = "Possui")
     private Set<PostGrafo> posts;
 
     public TagGrafo() {
