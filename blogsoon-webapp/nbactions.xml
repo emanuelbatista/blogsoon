@@ -11,4 +11,17 @@
                 <goal>spring-boot:run</goal>
             </goals>
         </action>
+        <action>
+            <actionName>debug.single.main</actionName>
+            <packagings>
+                <packaging>*</packaging>
+            </packagings>
+            <goals>
+                <goal>spring-boot:run</goal>
+            </goals>
+            <properties>
+                <jpda.listen>maven</jpda.listen>
+                <Env.JAVA_HOME>/usr/lib/jvm/java-8-oracle</Env.JAVA_HOME>
+            </properties>
+        </action>
     </actions>

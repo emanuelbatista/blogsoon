@@ -8,6 +8,7 @@ import br.edu.ifpb.blogsoon.core.entidades.grafo.TagGrafo;
 import br.edu.ifpb.blogsoon.manager.repositorios.grafo.PostGrafoRepository;
 import br.edu.ifpb.blogsoon.manager.repositorios.grafo.TagGrafoRepository;
 import br.edu.ifpb.blogsoon.manager.repositorios.post.PostRepository;
+import br.edu.ifpb.blogsoon.manager.repositorios.post.redis.PostCache;
 import br.edu.ifpb.blogsoon.manager.servicos.avaliacao.AvaliacaoService;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,7 +31,6 @@ public class PostServiceImpl implements PostService {
     @Inject
     private PostRepository repository;    
     private AvaliacaoService avaliacaoService;
-    @Autowired
     private PostGrafoRepository postGrafoRepository;
     @Autowired
     private TagGrafoRepository tagGrafoRepository;
@@ -39,6 +39,8 @@ public class PostServiceImpl implements PostService {
     public void setAvaliacaoService(AvaliacaoService avaliacaoService) {
         this.avaliacaoService = avaliacaoService;
     }
+    @Inject
+    private PostCache cache;
 
     @Inject
     public void setRepository(PostRepository repository) {
@@ -80,6 +82,13 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post recuperar(String id) {
         Post post = repository.findOne(id);
+        long tempTotal = System.currentTimeMillis();
+        if (cache.hasChave(id)) {
+            post = cache.get(id);
+        } else {
+            post = repository.findOne(id);
+            cache.add(post);
+        }
         post.setAvaliacoesPositivas(avaliacaoService.buscarPorIdPostETipo(id, AvaliacaoEnum.CURTIR));
         post.setAvaliacoesNegativas(avaliacaoService.buscarPorIdPostETipo(id, AvaliacaoEnum.NAO_CURTIR));
         return post;
