@@ -16,7 +16,9 @@ public interface PostService {
     
     public List<Post> recuperarTodosPorOrdemDeAvaliacao();
     
-    public void salvar (Post post);
+    public void salvar (Post post, String... tags);
     
     public boolean usuarioAvaliouPost (String idPost, Usuario usuario);
+    
+    public List<Post> recuperarPostsComMesmaTag (Post post);
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run.single.main</actionName>
+            <packagings>
+                <packaging>*</packaging>
+            </packagings>
+            <goals>
+                <goal>spring-boot:run</goal>
+            </goals>
+            <properties>
+                <Env.JAVA_HOME>/usr/lib/jvm/java-8-openjdk-amd64</Env.JAVA_HOME>
+                <jpda.listen>maven</jpda.listen>
+            </properties>
+        </action>
+    </actions>

@@ -70,8 +70,8 @@ public class PostController {
                 for (String a : list) {
                     content = content.concat(processor.markdownToHtml(a));
                 }
-                Usuario usuario = (Usuario) session.getAttribute("usuario");
-                postService.salvar(new Post(title, content, usuario.getLogin(), Arrays.asList(palavras_chave.split(",")), resumo));
+                Usuario usuario = (Usuario) session.getAttribute("usuario");                
+                postService.salvar(new Post(title, content, usuario.getLogin(), Arrays.asList(palavras_chave.split(",")), resumo), palavras_chave.split(","));
                 
                 return content;
             } catch (Exception e) {
@@ -91,6 +91,7 @@ public class PostController {
             request.setAttribute("post", post);
             request.setAttribute("avaliouPost", postService.usuarioAvaliouPost(id, usuario));
             request.setAttribute("usuario", usuarioService.recuperar(post.getAuthorLogin()));
+            request.setAttribute("recomendacoes", postService.recuperarPostsComMesmaTag(post));
             return "/article";
         }
         return "index";
