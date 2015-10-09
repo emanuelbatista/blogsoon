@@ -29,8 +29,8 @@ public class MainController {
     }
     
     @RequestMapping("/")
-    public String index (HttpServletRequest request){
-        request.setAttribute("posts", postService.recuperarTodos());
+    public String index (HttpServletRequest request){        
+        request.setAttribute("posts", postService.recuperarTodos());        
         return "index";
     }
 }

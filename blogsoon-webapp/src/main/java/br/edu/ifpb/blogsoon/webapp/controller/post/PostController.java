@@ -91,7 +91,7 @@ public class PostController {
             request.setAttribute("post", post);
             request.setAttribute("avaliouPost", postService.usuarioAvaliouPost(id, usuario));
             request.setAttribute("usuario", usuarioService.recuperar(post.getAuthorLogin()));
-            request.setAttribute("recomendacoes", postService.recuperarPostsComMesmaTag(post));
+            request.setAttribute("recomendacoes", postService.recuperarPostsComMesmaTag(post).subList(0, 3));
             return "/article";
         }
         return "index";

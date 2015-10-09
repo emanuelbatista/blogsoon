@@ -38,19 +38,37 @@
         <div class="post content z-depth-1">
             ${post.content}
         </div>
+        <div id="recomendacoes">
+            <c:forEach items="${recomendacoes}" var="post">                
+                <div class="col l3 m6 s12">
+                    <div class="post z-depth-1">
+                        <h5>${post.title}</h5>
+                        <p class="muted">${post.resumo}</p>
+                        <div class="post_footer">
+                            <p class="muted">por ${post.authorLogin}</p>
+                            <p class="muted"><b>Palavras-chave: </b>${post.keywords}</p>
+                            <div class="post-avaliacao">
+                                <p class="avaliacao-positiva"><i class="mdi-action-thumb-up"></i>${post.avaliacoesPositivas.size()}</p>
+                                <p class="avaliacao-negativa"><i class="mdi-action-thumb-down"></i>${post.avaliacoesNegativas.size()}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
         <footer class="blue-grey darken-4 row">
             <div class="post-avaliacao col l2 m3">
                 <input type="hidden" value="${post.id}"  id="idPost"/> 
                 <c:if test="${!avaliouPost}">
                     <p class="avaliacao-positiva" onclick="avaliar('CURTIR')"><i class="mdi-action-thumb-up"></i>${post.avaliacoesPositivas.size()}</p>
                     <p class="avaliacao-negativa" onclick="avaliar('NAO_CURTIR')"><i class="mdi-action-thumb-down"></i>${post.avaliacoesNegativas.size()}</p>
-                </c:if>
-                <c:if test="${avaliouPost}">
+                    </c:if>
+                    <c:if test="${avaliouPost}">
                     <p class="avaliacao-positiva" onclick="Materialize.toast('Você já avaliou o post')"><i class="mdi-action-thumb-up"></i>${post.avaliacoesPositivas.size()}</p>
                     <p class="avaliacao-negativa" onclick="Materialize.toast('Você já avaliou o post')"><i class="mdi-action-thumb-down"></i>${post.avaliacoesNegativas.size()}</p>
-                </c:if>
+                    </c:if>
             </div>
-            <form>
+            <!--<form>
                 <div class="input-field col l9 m8 row">
                     <input id="first_name" type="text" class="validate col l11 m8">
                     <label for="first_name">Escreva um comentário</label>
@@ -58,7 +76,7 @@
                 <button class="btn waves-effect waves-light col l1 m2" type="submit" name="action">
                     <i class="mdi-content-send right"></i>
                 </button>
-            </form>
+            </form>-->
         </footer>
     </body>
     <script>

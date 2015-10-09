@@ -31,7 +31,7 @@ import org.springframework.data.domain.Sort;
 public class PostServiceImpl implements PostService {
 
     @Inject
-    private PostRepository repository;   
+    private PostRepository repository;
     @Inject
     private AvaliacaoService avaliacaoService;
     @Autowired
@@ -42,15 +42,19 @@ public class PostServiceImpl implements PostService {
     @Inject
     private PostCache cache;
 
-
+    @Override
     public List<Post> recuperarTodos() {
         Sort ordem = new Sort(Sort.Direction.ASC, "title");
         List<Post> posts = repository.findAll(ordem);
-        posts.forEach(x -> {
-            x.setAvaliacoesPositivas(avaliacaoService.buscarPorIdPostETipo(x.getId(), AvaliacaoEnum.CURTIR));
-            x.setAvaliacoesNegativas(avaliacaoService.buscarPorIdPostETipo(x.getId(), AvaliacaoEnum.NAO_CURTIR));
-        });
-        Collections.sort(posts);
+        try {
+            posts.forEach(x -> {
+                x.setAvaliacoesPositivas(avaliacaoService.buscarPorIdPostETipo(x.getId(), AvaliacaoEnum.CURTIR));
+                x.setAvaliacoesNegativas(avaliacaoService.buscarPorIdPostETipo(x.getId(), AvaliacaoEnum.NAO_CURTIR));
+            });
+            Collections.sort(posts);
+        }catch (Exception e){
+            e.printStackTrace();
+        }        
         return posts;
     }
 
@@ -94,11 +98,11 @@ public class PostServiceImpl implements PostService {
     public boolean usuarioAvaliouPost(String idPost, Usuario usuario) {
         return avaliacaoService.buscarPorIdPostEUsuario(idPost, usuario).size() >= 1;
     }
-    
-    public List<Post> recuperarPostsComMesmaTag (Post post){
+
+    public List<Post> recuperarPostsComMesmaTag(Post post) {
         Set<PostGrafo> lista = postGrafoService.getPostWithSameTag(post.getId());
         List<Post> posts = new ArrayList<>();
-        for (PostGrafo pg : lista){
+        for (PostGrafo pg : lista) {
             posts.add(repository.findOne(pg.getId()));
         }
         return posts;

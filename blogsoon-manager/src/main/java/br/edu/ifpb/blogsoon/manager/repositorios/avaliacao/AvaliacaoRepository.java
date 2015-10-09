@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Isolation;
 /**
  *
  * @author Emanuel Batista da Silva Filho - emanuelbatista2011@gmail.com
+ * @author douglasgabriel
  */
 public interface AvaliacaoRepository extends CrudRepository<Avaliacao, Long>{
     
