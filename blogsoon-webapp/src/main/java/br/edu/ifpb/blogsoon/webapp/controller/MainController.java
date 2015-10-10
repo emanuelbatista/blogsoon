@@ -22,15 +22,15 @@ public class MainController {
     public void setPostService(PostService postService) {
         this.postService = postService;
     }
-    
+
     @ModelAttribute("usuario")
     public Usuario criarUsuario() {
         return new Usuario();
     }
-    
+
     @RequestMapping("/")
     public String index (HttpServletRequest request){        
-        request.setAttribute("posts", postService.recuperarTodos());        
+        request.setAttribute("posts", postService.recuperarTodos());
         return "index";
     }
 }
