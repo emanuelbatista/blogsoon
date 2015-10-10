@@ -10,6 +10,8 @@ import java.io.IOException;
 import javax.inject.Named;
 import javax.persistence.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -65,6 +67,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 //    }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public Usuario recuperar(String login) {
         return repositorio.findOne(login);
     }
