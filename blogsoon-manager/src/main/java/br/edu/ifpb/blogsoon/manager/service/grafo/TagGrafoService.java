@@ -7,6 +7,7 @@ package br.edu.ifpb.blogsoon.manager.service.grafo;
 
 import br.edu.ifpb.blogsoon.core.entidades.grafo.TagGrafo;
 import br.edu.ifpb.blogsoon.manager.repositorios.grafo.TagGrafoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class TagGrafoService {
     
+    @Autowired
     private TagGrafoRepository repository;
     
     public TagGrafo findOne(String id){

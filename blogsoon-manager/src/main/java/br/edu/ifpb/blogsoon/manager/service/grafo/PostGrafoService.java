@@ -8,6 +8,7 @@ package br.edu.ifpb.blogsoon.manager.service.grafo;
 import br.edu.ifpb.blogsoon.core.entidades.grafo.PostGrafo;
 import br.edu.ifpb.blogsoon.manager.repositorios.grafo.PostGrafoRepository;
 import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PostGrafoService {
     
+    @Autowired
     private PostGrafoRepository repository;
     
     public PostGrafo save (PostGrafo postGrafo){

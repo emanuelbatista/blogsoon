@@ -2,11 +2,13 @@ package br.edu.ifpb.blogsoon.webapp.config;
 
 import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
 import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 import org.springframework.data.neo4j.server.Neo4jServer;
 import org.springframework.data.neo4j.server.RemoteServer;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  *
@@ -14,7 +16,9 @@ import org.springframework.data.neo4j.server.RemoteServer;
  * @version 0.1
  */
 @Configuration
-@EnableNeo4jRepositories
+@ComponentScan("br.edu.ifpb.blogsoon.manager")
+@EnableNeo4jRepositories("br.edu.ifpb.blogsoon.manager.repositorios.grafo")
+@EnableTransactionManagement
 public class Neo4jConfig extends Neo4jConfiguration{
 
     @Bean
@@ -26,7 +30,7 @@ public class Neo4jConfig extends Neo4jConfiguration{
     @Bean
     @Override
     public SessionFactory getSessionFactory() {
-        return new SessionFactory("br.edu.ifpb.blogsson");
+        return new SessionFactory("br.edu.ifpb.blogsoon.core.entidades.grafo");
     }
 
     
