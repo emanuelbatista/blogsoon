@@ -3,13 +3,9 @@ package br.edu.ifpb.blogsoon.manager.servicos.usuario;
 import br.edu.ifpb.blogsoon.core.entidades.Usuario;
 import br.edu.ifpb.blogsoon.manager.exceptions.LoginException;
 import br.edu.ifpb.blogsoon.manager.repositorios.usuario.UsuarioRepository;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import javax.inject.Named;
 import javax.persistence.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,13 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
  * @author douglasgabriel
  * @version 0.1
  */
-@Named
-public class UsuarioServiceImpl implements UsuarioService {
+@Service
+public class UsuarioServiceImpl{
 
     @Autowired
     private UsuarioRepository repositorio;
 
-    @Override
     public void salvar(Usuario usuario) throws PersistenceException {
         if (repositorio.findOne(usuario.getLogin()) != null) {
             throw new PersistenceException("O login informado já foi cadastrado");
@@ -37,7 +32,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
     }
 
-    @Override
     public Usuario login(String login, String senha) throws LoginException {
         Usuario usuario;
         if ((usuario = repositorio.findOne(login)) != null) {
@@ -66,7 +60,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 //        System.out.println("Arquivo atribuido ao usuario");
 //    }
 
-    @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public Usuario recuperar(String login) {
         return repositorio.findOne(login);

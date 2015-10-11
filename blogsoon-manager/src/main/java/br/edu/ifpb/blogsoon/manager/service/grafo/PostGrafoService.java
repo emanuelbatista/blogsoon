@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PostGrafoService {
     
-    @Autowired
+//    @Autowired
     private PostGrafoRepository repository;
     
     public PostGrafo save (PostGrafo postGrafo){

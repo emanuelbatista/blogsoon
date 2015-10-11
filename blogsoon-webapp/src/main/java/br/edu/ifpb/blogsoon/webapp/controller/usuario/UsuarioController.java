@@ -3,7 +3,7 @@ package br.edu.ifpb.blogsoon.webapp.controller.usuario;
 import br.edu.ifpb.blogsoon.core.entidades.Usuario;
 import br.edu.ifpb.blogsoon.manager.exceptions.LoginException;
 import br.edu.ifpb.blogsoon.manager.repositorios.usuario.UsuarioRepository;
-import br.edu.ifpb.blogsoon.manager.servicos.usuario.UsuarioService;
+import br.edu.ifpb.blogsoon.manager.servicos.usuario.UsuarioServiceImpl;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.logging.Level;
@@ -32,11 +32,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class UsuarioController{
 
     @Autowired
-    private UsuarioService servico;
+    private UsuarioServiceImpl servico;
     
-    @Autowired
-    private UsuarioRepository UsuarioRepository;
-
     @ModelAttribute("usuario")
     public Usuario criarUsuario() {
         return new Usuario();
@@ -89,7 +86,7 @@ public class UsuarioController{
             try {
                 Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
                 usuario.setFoto(arquivo.getBytes());
-                UsuarioRepository.save(usuario);
+                servico.salvar(usuario);
             } catch (IOException ex) {
                 ex.getStackTrace();
             }

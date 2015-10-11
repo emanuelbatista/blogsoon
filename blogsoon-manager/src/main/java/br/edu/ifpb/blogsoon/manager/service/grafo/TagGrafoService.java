@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class TagGrafoService {
     
-    @Autowired
+//    @Autowired
     private TagGrafoRepository repository;
     
     public TagGrafo findOne(String id){

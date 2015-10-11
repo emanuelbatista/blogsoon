@@ -3,7 +3,7 @@ package br.edu.ifpb.blogsoon.webapp.controller.post;
 import br.edu.ifpb.blogsoon.core.entidades.Post;
 import br.edu.ifpb.blogsoon.core.entidades.Usuario;
 import br.edu.ifpb.blogsoon.manager.servicos.post.PostService;
-import br.edu.ifpb.blogsoon.manager.servicos.usuario.UsuarioService;
+import br.edu.ifpb.blogsoon.manager.servicos.usuario.UsuarioServiceImpl;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
@@ -31,10 +31,10 @@ import org.springframework.web.multipart.MultipartFile;
 public class PostController {
 
     private PostService postService;
-    private UsuarioService usuarioService;
+    private UsuarioServiceImpl usuarioService;
 
     @Inject
-    public void setUsuarioService(UsuarioService usuarioService) {
+    public void setUsuarioService(UsuarioServiceImpl usuarioService) {
         this.usuarioService = usuarioService;
     }
     
