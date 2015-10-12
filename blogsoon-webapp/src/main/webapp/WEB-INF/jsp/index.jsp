@@ -20,32 +20,41 @@
     </head>
 
     <body class="grey lighten-4">
-    <c:if test="${sessionScope.usuario != null}">
-        <jsp:include page="/WEB-INF/jsp/usuarioLogadoTopbar.jsp"/>
-    </c:if>
-    <c:if test="${sessionScope.usuario == null}">
-        <jsp:include page="/WEB-INF/jsp/usuarioNaoLogadoTopbar.jsp"/>
-    </c:if>
-    <div id="cadastro" class="modal">
-        <jsp:include page="/WEB-INF/jsp/cadastro.jsp"/>
-    </div>
-    <div id="login" class="modal">
-        <jsp:include page="/WEB-INF/jsp/login.jsp"/>
-    </div>
+        <c:if test="${sessionScope.usuario != null}">
+            <jsp:include page="/WEB-INF/jsp/usuarioLogadoTopbar.jsp"/>
+        </c:if>
+        <c:if test="${sessionScope.usuario == null}">
+            <jsp:include page="/WEB-INF/jsp/usuarioNaoLogadoTopbar.jsp"/>
+        </c:if>
+        <div id="cadastro" class="modal">
+            <jsp:include page="/WEB-INF/jsp/cadastro.jsp"/>
+        </div>
+        <div id="login" class="modal">
+            <jsp:include page="/WEB-INF/jsp/login.jsp"/>
+        </div>
 
-    <div class="posts row">
-        <h5 class="muted section-title">Em alta</h5>
-        <jsp:include page="/WEB-INF/jsp/listagemPosts.jsp" />
-    </div>
+        <div class="posts row">
+            <h5 class="muted section-title">Em alta</h5>
+            <jsp:include page="/WEB-INF/jsp/listagemPosts.jsp" />
+        </div>
 
-    <script>
-        $(".button-collapse").sideNav();
-        $(document).ready(function () {
-            $('.modal-trigger').leanModal();
-        });
+        <c:if test="${sessionScope.usuario != null}">
+            <div class="modal" id="newPostModal">
+                <jsp:include page="/WEB-INF/jsp/newPostModal.jsp"/>
+            </div>
+            <div class="fixed-action-btn modal-trigger" href="#newPostModal" style="bottom: 45px; right: 24px;">
+                <a class="btn-floating btn-large waves-effect waves-light grey darken-4"><i class="material-icons mdi-content-add"></i></a>
+            </div>
+        </c:if>
+
+        <script>
+            $(".button-collapse").sideNav();
+            $(document).ready(function () {
+                $('.modal-trigger').leanModal();
+            });
 
 
-    </script>
+        </script>
 
-</body>
+    </body>
 </html>

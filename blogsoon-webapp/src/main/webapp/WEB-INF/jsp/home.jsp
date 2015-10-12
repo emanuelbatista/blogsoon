@@ -29,10 +29,7 @@
         </div>
 
         <jsp:include page="/WEB-INF/jsp/usuarioLogadoTopbar.jsp"/>
-
-        <div class="fixed-action-btn modal-trigger" href="#newPostModal" style="bottom: 45px; right: 24px;">
-            <a class="btn-floating btn-large waves-effect waves-light grey darken-4"><i class="material-icons mdi-content-add"></i></a>
-        </div>
+        
 
         <div id="uploadImagem" class="modal">
             <div class="modal-content">

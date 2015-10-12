@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TagGrafoRepository extends GraphRepository<TagGrafo>{
 
-    @Query("MATCH (t:Tag {nome = {0}} return t")
+    @Query("MATCH (t:Tag {nome : {0}}) return t")
     TagGrafo findOne (String nome);
     
 }

@@ -67,13 +67,18 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void salvar(Post post, String... tags) {
+        System.out.println(post.getTitle());
         repository.save(post);
+        System.out.println(post.getId());
         Set<TagGrafo> lista = new HashSet<>();
         for (String s : tags) {
+            System.out.println(s);
             TagGrafo tg = tagGrafoService.findOne(s);
             if (tg == null) {
                 tg = new TagGrafo(s);
+                System.out.println("salvou tag");
             }
+            System.out.println("a tag já existe");
             lista.add(tg);
         }
         postGrafoService.save(new PostGrafo(post.getId(), lista));

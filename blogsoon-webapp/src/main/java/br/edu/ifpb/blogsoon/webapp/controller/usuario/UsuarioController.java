@@ -51,7 +51,7 @@ public class UsuarioController{
         try {
             Usuario usuario = servico.login(login, senha);
             request.getSession().setAttribute("usuario", usuario);
-            return "redirect:/usuario/home";
+            return "redirect:/";
         } catch (LoginException e) {
             request.setAttribute("loginErro", e.getMessage());
             return "index";
