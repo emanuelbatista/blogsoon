@@ -26,7 +26,7 @@ public class Neo4jConfig extends Neo4jConfiguration{
     @Bean
     @Override
     public Neo4jServer neo4jServer() {
-        return new RemoteServer("http://localhost:7474","neo4j","123456");
+        return new RemoteServer("http://localhost:7474","neo4j","123");
     }
 
     @Bean
