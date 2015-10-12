@@ -6,9 +6,12 @@ import br.edu.ifpb.blogsoon.manager.servicos.post.PostService;
 import br.edu.ifpb.blogsoon.manager.servicos.usuario.UsuarioServiceImpl;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -37,12 +40,12 @@ public class PostController {
     public void setUsuarioService(UsuarioServiceImpl usuarioService) {
         this.usuarioService = usuarioService;
     }
-    
+
     @Inject
     public void setPostService(PostService postService) {
         this.postService = postService;
     }
-    
+
     @RequestMapping(value = "/upload", method = RequestMethod.GET)
     public @ResponseBody
     String provideUploadInfo() {
@@ -51,7 +54,7 @@ public class PostController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public @ResponseBody
-    String handleFileUpload( HttpSession session,
+    String handleFileUpload(HttpSession session,
             @RequestParam("title") String title,
             String palavras_chave,
             String resumo,
@@ -59,40 +62,43 @@ public class PostController {
 
         if (!file.isEmpty()) {
             try {
+
                 PegDownProcessor processor = new PegDownProcessor();
-                
+
                 String content = "";
-                
-                byte[] bytes = file.getBytes();
+
+                byte[] bytes;
+                bytes = file.getBytes();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(bytes)));
                 List<String> list = reader.lines().collect(Collectors.toList());
-                
+
                 for (String a : list) {
                     content = content.concat(processor.markdownToHtml(a));
                 }
-                Usuario usuario = (Usuario) session.getAttribute("usuario");                
+                Usuario usuario = (Usuario) session.getAttribute("usuario");
                 postService.salvar(new Post(title, content, usuario.getLogin(), Arrays.asList(palavras_chave.split(",")), resumo), palavras_chave.split(","));
-                
                 return content;
-            } catch (Exception e) {
-                return "You failed to upload " + title + " => " + e.getMessage();
+            } catch (Exception ex) {
+                Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            return null;
+        
+
         } else {
             return "You failed to upload " + title + " because the file was empty.";
         }
     }
-    
+
     @RequestMapping("/{id}")
-    public String loadPostPage (HttpServletRequest request
-            , @PathVariable String id, HttpSession session){
+    public String loadPostPage(HttpServletRequest request, @PathVariable String id, HttpSession session) {
         Post post;
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        if ((post = postService.recuperar(id)) != null){            
+        if ((post = postService.recuperar(id)) != null) {
             request.setAttribute("post", post);
             request.setAttribute("avaliouPost", postService.usuarioAvaliouPost(id, usuario));
             request.setAttribute("usuario", usuarioService.recuperar(post.getAuthorLogin()));
-            List<Post> listPosts=postService.recuperarPostsComMesmaTag(post);
-            request.setAttribute("recomendacoes", listPosts.subList(0, listPosts.size()>=3?3:listPosts.size()));
+            List<Post> listPosts = postService.recuperarPostsComMesmaTag(post);
+            request.setAttribute("recomendacoes", listPosts.subList(0, listPosts.size() >= 3 ? 3 : listPosts.size()));
             return "/article";
         }
         return "index";

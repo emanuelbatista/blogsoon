@@ -10,8 +10,6 @@ import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 import org.springframework.data.neo4j.server.Neo4jServer;
 import org.springframework.data.neo4j.server.RemoteServer;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -19,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @version 0.1
  */
 @Configuration
-@ComponentScan("br.edu.ifpb.blogsoon.manager.repositorios.grafo")
+@ComponentScan("br.edu.ifpb.blogsoon")
 @EnableNeo4jRepositories(basePackages = "br.edu.ifpb.blogsoon.manager.repositorios.grafo")
 public class Neo4jConfig extends Neo4jConfiguration{
 

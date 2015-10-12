@@ -5,8 +5,6 @@ import br.edu.ifpb.blogsoon.core.entidades.Post;
 import br.edu.ifpb.blogsoon.core.entidades.Usuario;
 import br.edu.ifpb.blogsoon.core.entidades.grafo.PostGrafo;
 import br.edu.ifpb.blogsoon.core.entidades.grafo.TagGrafo;
-import br.edu.ifpb.blogsoon.manager.repositorios.grafo.PostGrafoRepository;
-import br.edu.ifpb.blogsoon.manager.repositorios.grafo.TagGrafoRepository;
 import br.edu.ifpb.blogsoon.manager.repositorios.post.PostRepository;
 import br.edu.ifpb.blogsoon.manager.repositorios.post.redis.PostCache;
 import br.edu.ifpb.blogsoon.manager.service.grafo.PostGrafoService;
@@ -108,7 +106,7 @@ public class PostServiceImpl implements PostService {
         Set<PostGrafo> lista = postGrafoService.getPostWithSameTag(post.getId());
         List<Post> posts = new ArrayList<>();
         for (PostGrafo pg : lista) {
-            posts.add(repository.findOne(pg.getId()));
+            posts.add(repository.findOne(pg.getIdPost()));
         }
         return posts;
     }
