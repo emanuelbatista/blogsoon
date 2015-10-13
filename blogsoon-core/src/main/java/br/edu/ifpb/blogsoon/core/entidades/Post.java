@@ -106,11 +106,15 @@ public class Post implements Comparable<Post>{
 
     @Override
     public int compareTo(Post outro) {
-        int thisTotalAvaliacao = this.getAvaliacoesNegativas().size() + this.getAvaliacoesPositivas().size();
-        int outroTotalAvaliacao = outro.getAvaliacoesNegativas().size() + outro.getAvaliacoesPositivas().size();
-        int thisMediaAvaliacao = (this.getAvaliacoesPositivas().size() - this.getAvaliacoesNegativas().size()) / thisTotalAvaliacao;
-        int outroMediaAvaliacao = (outro.getAvaliacoesPositivas().size() - outro.getAvaliacoesNegativas().size()) / outroTotalAvaliacao;
-        return thisMediaAvaliacao - outroMediaAvaliacao;
+        int retorno=this.getAvaliacoesPositivas().size()-outro.getAvaliacoesPositivas().size();
+        if(retorno==0){
+            if(this.getAvaliacoesNegativas().size()<outro.getAvaliacoesNegativas().size()){
+                return -1;
+            }else{
+                return 1;
+            }
+        }
+        return retorno * (-1);
     }
 
 }
