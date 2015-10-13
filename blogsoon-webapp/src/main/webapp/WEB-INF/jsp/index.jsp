@@ -22,6 +22,7 @@
     <body class="grey lighten-4">
         <c:if test="${sessionScope.usuario != null}">
             <jsp:include page="/WEB-INF/jsp/usuarioLogadoTopbar.jsp"/>
+            <jsp:include page="/WEB-INF/jsp/modalUploadImagem.jsp"/>
         </c:if>
         <c:if test="${sessionScope.usuario == null}">
             <jsp:include page="/WEB-INF/jsp/usuarioNaoLogadoTopbar.jsp"/>

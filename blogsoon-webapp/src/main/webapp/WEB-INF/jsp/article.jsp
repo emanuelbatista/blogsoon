@@ -24,11 +24,16 @@
     <body class="blue-grey lighten-4">
         <c:if test="${sessionScope.usuario != null}">
             <jsp:include page="/WEB-INF/jsp/usuarioLogadoTopbar.jsp"/>
+            <jsp:include page="/WEB-INF/jsp/modalUploadImagem.jsp"/>
         </c:if>
+
         <c:if test="${sessionScope.usuario == null}">
             <jsp:include page="/WEB-INF/jsp/usuarioNaoLogadoTopbar.jsp"/>
             <div id="login" class="modal">
-                <jsp:include page="/WEB-INF/jsp/login.jsp"/>
+                <jsp:include page="/WEB-INF/jsp/login.jsp"/>                
+            </div>
+            <div id="cadastro" class="modal">
+                <jsp:include page="/WEB-INF/jsp/cadastro.jsp"/>
             </div>
         </c:if>
         <header class="blue-grey darken-4">
@@ -66,8 +71,8 @@
             <div class="post-avaliacao col l2 m3">
                 <input type="hidden" value="${post.id}"  id="idPost"/> 
                 <c:if test="${!avaliouPost}">
-                    <p class="avaliacao-positiva" onclick="avaliar('CURTIR')"><i class="mdi-action-thumb-up"></i>${post.avaliacoesPositivas.size()}</p>
-                    <p class="avaliacao-negativa" onclick="avaliar('NAO_CURTIR')"><i class="mdi-action-thumb-down"></i>${post.avaliacoesNegativas.size()}</p>
+                    <p class="avaliacao-positiva positivo" onclick="avaliar('CURTIR')"><i class="mdi-action-thumb-up"></i>${post.avaliacoesPositivas.size()}</p>
+                    <p class="avaliacao-negativa negativo" onclick="avaliar('NAO_CURTIR')"><i class="mdi-action-thumb-down"></i>${post.avaliacoesNegativas.size()}</p>
                     </c:if>
                     <c:if test="${avaliouPost}">
                     <p class="avaliacao-positiva" onclick="Materialize.toast('Você já avaliou o post')"><i class="mdi-action-thumb-up"></i>${post.avaliacoesPositivas.size()}</p>
@@ -102,9 +107,9 @@
                 if (xhr.status === 200) {
                     var elemento;
                     if (avaliacao === 'CURTIR')
-                        elemento = $('.avaliacao-positiva').append('+1');
+                        elemento = $('.positivo').append('+1');
                     else if (avaliacao === 'NAO_CURTIR')
-                        elemento = $('.avaliacao-negativa').append('+1');
+                        elemento = $('.negativo').append('+1');
                     Materialize.toast('Obrigado por avaliar este post', 14000);
                 } else if (xhr.status === 403)
                     Materialize.toast('Você já valiou este post', 14000);
