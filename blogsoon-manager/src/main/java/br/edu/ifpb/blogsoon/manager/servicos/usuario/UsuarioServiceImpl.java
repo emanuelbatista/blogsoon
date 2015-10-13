@@ -31,6 +31,10 @@ public class UsuarioServiceImpl{
 //            }
         }
     }
+    
+    public void atualizar (Usuario usuario){
+        repositorio.save(usuario);
+    }
 
     public Usuario login(String login, String senha) throws LoginException {
         Usuario usuario;

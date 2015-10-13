@@ -81,17 +81,16 @@ public class UsuarioController{
     @RequestMapping("salvar/imagem")
     public String uploadImagemPerfil(@RequestParam("file") MultipartFile arquivo,
             HttpServletRequest request) {
-        System.out.println("Entrando no método para salvar imagem do controlador");
         if (!arquivo.isEmpty()) {
             try {
                 Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
                 usuario.setFoto(arquivo.getBytes());
-                servico.salvar(usuario);
+                servico.atualizar(usuario);
             } catch (IOException ex) {
                 ex.getStackTrace();
             }
         }
-        return "redirect:/usuario/home";
+        return "redirect:/";
     }
     
     @RequestMapping(value="imagem/perfil",produces = {MediaType.IMAGE_GIF_VALUE,MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE})
