@@ -23,15 +23,14 @@ header .content{
 .post.content img{
     max-width: 100%;
 }
-footer{
-    width: 100%;
-    padding:5px;
+footer{        
     position:fixed;
     bottom: 0px;
-    margin:0px !important;
+    right:0px;
+    margin:0px !important;    
 }
 footer .post-avaliacao{
-    padding-top:22px !important;
+    width: 100% !important;
 }
 footer .post-avaliacao > *{
     display:inline;
@@ -66,6 +65,37 @@ footer form .btn:hover{
     box-shadow: 0px 0px 0px black;
     float:none;
     text-align: left;
+}
+.recomendacoes .post{
+    background-color: white;
+    padding: 10px 0px 0px 0px;        
+    height:250px;
+    overflow-y: auto;
+    margin-top:10px;
+}
+.recomendacoes .post > *{
+    margin:10px;
+}
+.recomendacoes .post .post_footer{
+    margin:0px;
+    border-top:1px solid rgba(0,0,0,0.2);    
+    width:100% !important;
+    padding:5px 10px;
+    position:relative;
+    bottom:0px;
+}
+.recomendacoes .post .post_footer p{
+    margin:0px;    
+}
+.recomendacoes .post .post_footer .post-avaliacao > *{
+    display: inline;
+    margin:0px 5px;
+}
+.recomendacoes .post .post_footer p.avaliacao-positiva{
+    color:green;
+}
+.recomendacoes .post .post_footer p.avaliacao-negativa{
+    color:red;
 }
 @media (max-width:700px){
     .post.content{

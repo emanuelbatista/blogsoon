@@ -53,7 +53,7 @@ public class PostController {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public @ResponseBody
+    public
     String handleFileUpload(HttpSession session,
             @RequestParam("title") String title,
             String palavras_chave,
@@ -77,7 +77,7 @@ public class PostController {
                 }
                 Usuario usuario = (Usuario) session.getAttribute("usuario");
                 postService.salvar(new Post(title, content, usuario.getLogin(), Arrays.asList(palavras_chave.split(",")), resumo), palavras_chave.split(","));
-                return content;
+                return "redirect:/";
             } catch (Exception ex) {
                 Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
             }

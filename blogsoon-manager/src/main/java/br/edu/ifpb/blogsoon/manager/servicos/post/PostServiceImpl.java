@@ -50,9 +50,9 @@ public class PostServiceImpl implements PostService {
                 x.setAvaliacoesNegativas(avaliacaoService.buscarPorIdPostETipo(x.getId(), AvaliacaoEnum.NAO_CURTIR));
             });
             Collections.sort(posts);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }        
+        }
         return posts;
     }
 
@@ -102,11 +102,15 @@ public class PostServiceImpl implements PostService {
         return avaliacaoService.buscarPorIdPostEUsuario(idPost, usuario).size() >= 1;
     }
 
+    @Override
     public List<Post> recuperarPostsComMesmaTag(Post post) {
         Set<PostGrafo> lista = postGrafoService.getPostWithSameTag(post.getId());
         List<Post> posts = new ArrayList<>();
         for (PostGrafo pg : lista) {
-            posts.add(repository.findOne(pg.getIdPost()));
+            Post recomendacao = repository.findOne(pg.getIdPost());
+            recomendacao.setAvaliacoesPositivas(avaliacaoService.buscarPorIdPostETipo(recomendacao.getId(), AvaliacaoEnum.CURTIR));
+            recomendacao.setAvaliacoesNegativas(avaliacaoService.buscarPorIdPostETipo(recomendacao.getId(), AvaliacaoEnum.NAO_CURTIR));
+            posts.add(recomendacao);
         }
         return posts;
     }

@@ -27,6 +27,9 @@
         </c:if>
         <c:if test="${sessionScope.usuario == null}">
             <jsp:include page="/WEB-INF/jsp/usuarioNaoLogadoTopbar.jsp"/>
+            <div id="login" class="modal">
+                <jsp:include page="/WEB-INF/jsp/login.jsp"/>
+            </div>
         </c:if>
         <header class="blue-grey darken-4">
             <div class="content">
@@ -38,25 +41,28 @@
         <div class="post content z-depth-1">
             ${post.content}
         </div>
-        <div id="recomendacoes">
-            <c:forEach items="${recomendacoes}" var="post">                
-                <div class="col l3 m6 s12">
-                    <div class="post z-depth-1">
-                        <h5>${post.title}</h5>
-                        <p class="muted">${post.resumo}</p>
-                        <div class="post_footer">
-                            <p class="muted">por ${post.authorLogin}</p>
-                            <p class="muted"><b>Palavras-chave: </b>${post.keywords}</p>
-                            <div class="post-avaliacao">
-                                <p class="avaliacao-positiva"><i class="mdi-action-thumb-up"></i>${post.avaliacoesPositivas.size()}</p>
-                                <p class="avaliacao-negativa"><i class="mdi-action-thumb-down"></i>${post.avaliacoesNegativas.size()}</p>
+        <h5 class="muted section-title">Recomendações</h5>
+        <div class="recomendacoes row">
+            <c:forEach items="${recomendacoes}" var="post"> 
+                <a href="/posts/${post.id}">
+                    <div class="col l3 m6 s12">
+                        <div class="post z-depth-1">
+                            <h5>${post.title}</h5>
+                            <p class="muted">${post.resumo}</p>
+                            <div class="post_footer">
+                                <p class="muted">por ${post.authorLogin}</p>
+                                <p class="muted"><b>Palavras-chave: </b>${post.keywords}</p>
+                                <div class="post-avaliacao">
+                                    <p class="avaliacao-positiva"><i class="mdi-action-thumb-up"></i>${post.avaliacoesPositivas.size()}</p>
+                                    <p class="avaliacao-negativa"><i class="mdi-action-thumb-down"></i>${post.avaliacoesNegativas.size()}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </c:forEach>
         </div>
-        <footer class="blue-grey darken-4 row">
+        <footer class="blue-grey darken-4 row z-depth-3">
             <div class="post-avaliacao col l2 m3">
                 <input type="hidden" value="${post.id}"  id="idPost"/> 
                 <c:if test="${!avaliouPost}">
